@@ -18,6 +18,9 @@ namespace final_test
             this.op_ql_bh.Click += new System.EventHandler(this.op_ql_bh_Click);
         }
 
+        private Form curForm;
+        private bool isOpen = false;
+
         private void label10_Click(object sender, EventArgs e)
         {
 
@@ -49,7 +52,7 @@ namespace final_test
             ql_Ban_Hang.BringToFront();
             ql_Ban_Hang.Show();
             ql_Ban_Hang.MinimizeBox = false;
-            //ql_Ban_Hang.WindowState = FormWindowState.Maximized;
+            ql_Ban_Hang.FormBorderStyle = FormBorderStyle.None;
             ql_Ban_Hang.FormClosed += (s, args) =>
             {
                 this.Controls.Remove(op_ql_bh);
@@ -60,6 +63,19 @@ namespace final_test
             this.Controls.Add(this.op_ql_bh);
             this.op_ql_bh.BringToFront();
             this.op_ql_bh.Dock = DockStyle.Fill;
+            this.curForm = ql_Ban_Hang;
+            isOpen = true;
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            this.Controls.Remove(op_ql_bh);
+            this.op_con.Controls.Add(this.op_ql_bh);
+            if (isOpen)
+            {
+                this.curForm.Close();
+                isOpen = false;
+            }
         }
     }
 }

@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.con = new System.Windows.Forms.TableLayoutPanel();
             this.info_con = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.guna2ComboBox2 = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.them_btn = new Guna.UI2.WinForms.Guna2Button();
@@ -42,15 +46,11 @@
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.danh_sach_sp_con = new Guna.UI2.WinForms.Guna2GroupBox();
             this.d = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.guna2ComboBox2 = new Guna.UI2.WinForms.Guna2ComboBox();
             this.con.SuspendLayout();
             this.info_con.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.select_sp.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // con
@@ -94,6 +94,71 @@
             this.info_con.Size = new System.Drawing.Size(1506, 191);
             this.info_con.TabIndex = 1;
             this.info_con.Paint += new System.Windows.Forms.PaintEventHandler(this.info_con_Paint);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 146F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.48718F));
+            this.tableLayoutPanel1.Controls.Add(this.guna2ComboBox2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(788, 119);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(353, 69);
+            this.tableLayoutPanel1.TabIndex = 10;
+            // 
+            // guna2ComboBox2
+            // 
+            this.guna2ComboBox2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ComboBox2.BorderRadius = 10;
+            this.guna2ComboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2ComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.guna2ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.guna2ComboBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.guna2ComboBox2.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2ComboBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2ComboBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.guna2ComboBox2.ForeColor = System.Drawing.Color.White;
+            this.guna2ComboBox2.ItemHeight = 30;
+            this.guna2ComboBox2.Location = new System.Drawing.Point(151, 17);
+            this.guna2ComboBox2.Margin = new System.Windows.Forms.Padding(5, 17, 5, 17);
+            this.guna2ComboBox2.Name = "guna2ComboBox2";
+            this.guna2ComboBox2.Size = new System.Drawing.Size(197, 36);
+            this.guna2ComboBox2.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(5, 25);
+            this.label4.Margin = new System.Windows.Forms.Padding(5, 25, 5, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(132, 25);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Mã hóa đơn:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // guna2Button2
+            // 
+            this.guna2Button2.BorderRadius = 20;
+            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Button2.FillColor = System.Drawing.Color.Red;
+            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button2.ForeColor = System.Drawing.Color.White;
+            this.guna2Button2.Location = new System.Drawing.Point(1149, 126);
+            this.guna2Button2.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.guna2Button2.Name = "guna2Button2";
+            this.guna2Button2.Size = new System.Drawing.Size(352, 55);
+            this.guna2Button2.TabIndex = 9;
+            this.guna2Button2.Text = "Hủy hóa đơn";
             // 
             // label2
             // 
@@ -247,71 +312,6 @@
             this.danh_sach_sp_con.TabIndex = 0;
             this.danh_sach_sp_con.Text = "Danh sách sản phẩm";
             // 
-            // guna2Button2
-            // 
-            this.guna2Button2.BorderRadius = 20;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Button2.FillColor = System.Drawing.Color.Red;
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Location = new System.Drawing.Point(1149, 126);
-            this.guna2Button2.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(352, 55);
-            this.guna2Button2.TabIndex = 9;
-            this.guna2Button2.Text = "Hủy hóa đơn";
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 146F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.48718F));
-            this.tableLayoutPanel1.Controls.Add(this.guna2ComboBox2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(788, 119);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(353, 69);
-            this.tableLayoutPanel1.TabIndex = 10;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(5, 25);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 25, 5, 25);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(132, 25);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Mã hóa đơn:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // guna2ComboBox2
-            // 
-            this.guna2ComboBox2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ComboBox2.BorderRadius = 10;
-            this.guna2ComboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2ComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.guna2ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.guna2ComboBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2ComboBox2.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.guna2ComboBox2.ForeColor = System.Drawing.Color.White;
-            this.guna2ComboBox2.ItemHeight = 30;
-            this.guna2ComboBox2.Location = new System.Drawing.Point(151, 17);
-            this.guna2ComboBox2.Margin = new System.Windows.Forms.Padding(5, 17, 5, 17);
-            this.guna2ComboBox2.Name = "guna2ComboBox2";
-            this.guna2ComboBox2.Size = new System.Drawing.Size(197, 36);
-            this.guna2ComboBox2.TabIndex = 2;
-            // 
             // ql_hoa_don
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -324,11 +324,11 @@
             this.con.ResumeLayout(false);
             this.info_con.ResumeLayout(false);
             this.info_con.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.select_sp.ResumeLayout(false);
             this.select_sp.PerformLayout();
             this.guna2Panel1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
