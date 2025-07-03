@@ -30,13 +30,13 @@
         {
             this.dn_con = new System.Windows.Forms.TableLayoutPanel();
             this.dn = new Guna.UI2.WinForms.Guna2Panel();
-            this.ten_tai_khoan_gntb = new Guna.UI2.WinForms.Guna2TextBox();
-            this.mat_khau_gntb = new Guna.UI2.WinForms.Guna2TextBox();
-            this.dang_nhap_gnbtn = new Guna.UI2.WinForms.Guna2Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.quen_mk = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dang_nhap_gnbtn = new Guna.UI2.WinForms.Guna2Button();
+            this.mat_khau_gntb = new Guna.UI2.WinForms.Guna2TextBox();
+            this.ten_tai_khoan_gntb = new Guna.UI2.WinForms.Guna2TextBox();
+            this.tieu_de = new System.Windows.Forms.Label();
             this.dn_con.SuspendLayout();
             this.dn.SuspendLayout();
             this.SuspendLayout();
@@ -48,7 +48,7 @@
             this.dn_con.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.dn_con.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.dn_con.Controls.Add(this.dn, 1, 1);
-            this.dn_con.Controls.Add(this.label1, 1, 0);
+            this.dn_con.Controls.Add(this.tieu_de, 1, 0);
             this.dn_con.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dn_con.Location = new System.Drawing.Point(0, 0);
             this.dn_con.Name = "dn_con";
@@ -65,7 +65,7 @@
             this.dn.BackColor = System.Drawing.Color.Transparent;
             this.dn.BorderColor = System.Drawing.Color.AliceBlue;
             this.dn.BorderRadius = 10;
-            this.dn.Controls.Add(this.label4);
+            this.dn.Controls.Add(this.quen_mk);
             this.dn.Controls.Add(this.label3);
             this.dn.Controls.Add(this.label2);
             this.dn.Controls.Add(this.dang_nhap_gnbtn);
@@ -80,26 +80,53 @@
             this.dn.TabIndex = 0;
             this.dn.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
             // 
-            // ten_tai_khoan_gntb
+            // quen_mk
             // 
-            this.ten_tai_khoan_gntb.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.ten_tai_khoan_gntb.BorderRadius = 10;
-            this.ten_tai_khoan_gntb.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ten_tai_khoan_gntb.DefaultText = "";
-            this.ten_tai_khoan_gntb.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ten_tai_khoan_gntb.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ten_tai_khoan_gntb.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ten_tai_khoan_gntb.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ten_tai_khoan_gntb.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ten_tai_khoan_gntb.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.ten_tai_khoan_gntb.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ten_tai_khoan_gntb.Location = new System.Drawing.Point(53, 79);
-            this.ten_tai_khoan_gntb.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.ten_tai_khoan_gntb.Name = "ten_tai_khoan_gntb";
-            this.ten_tai_khoan_gntb.PlaceholderText = "";
-            this.ten_tai_khoan_gntb.SelectedText = "";
-            this.ten_tai_khoan_gntb.Size = new System.Drawing.Size(556, 58);
-            this.ten_tai_khoan_gntb.TabIndex = 0;
+            this.quen_mk.AutoSize = true;
+            this.quen_mk.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quen_mk.ForeColor = System.Drawing.Color.White;
+            this.quen_mk.Location = new System.Drawing.Point(461, 411);
+            this.quen_mk.Name = "quen_mk";
+            this.quen_mk.Size = new System.Drawing.Size(158, 25);
+            this.quen_mk.TabIndex = 5;
+            this.quen_mk.Text = "Quên mật khẩu";
+            this.quen_mk.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(53, 158);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 25);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Mật khẩu";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(53, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(143, 25);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Tên tài khoản";
+            // 
+            // dang_nhap_gnbtn
+            // 
+            this.dang_nhap_gnbtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dang_nhap_gnbtn.BorderRadius = 10;
+            this.dang_nhap_gnbtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.dang_nhap_gnbtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.dang_nhap_gnbtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.dang_nhap_gnbtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.dang_nhap_gnbtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dang_nhap_gnbtn.ForeColor = System.Drawing.Color.White;
+            this.dang_nhap_gnbtn.Location = new System.Drawing.Point(53, 303);
+            this.dang_nhap_gnbtn.Name = "dang_nhap_gnbtn";
+            this.dang_nhap_gnbtn.Size = new System.Drawing.Size(556, 78);
+            this.dang_nhap_gnbtn.TabIndex = 2;
+            this.dang_nhap_gnbtn.Text = "Đăng Nhập";
             // 
             // mat_khau_gntb
             // 
@@ -122,68 +149,41 @@
             this.mat_khau_gntb.Size = new System.Drawing.Size(556, 59);
             this.mat_khau_gntb.TabIndex = 1;
             // 
-            // dang_nhap_gnbtn
+            // ten_tai_khoan_gntb
             // 
-            this.dang_nhap_gnbtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dang_nhap_gnbtn.BorderRadius = 10;
-            this.dang_nhap_gnbtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.dang_nhap_gnbtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.dang_nhap_gnbtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.dang_nhap_gnbtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.dang_nhap_gnbtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dang_nhap_gnbtn.ForeColor = System.Drawing.Color.White;
-            this.dang_nhap_gnbtn.Location = new System.Drawing.Point(53, 303);
-            this.dang_nhap_gnbtn.Name = "dang_nhap_gnbtn";
-            this.dang_nhap_gnbtn.Size = new System.Drawing.Size(556, 78);
-            this.dang_nhap_gnbtn.TabIndex = 2;
-            this.dang_nhap_gnbtn.Text = "Đăng Nhập";
+            this.ten_tai_khoan_gntb.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.ten_tai_khoan_gntb.BorderRadius = 10;
+            this.ten_tai_khoan_gntb.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ten_tai_khoan_gntb.DefaultText = "";
+            this.ten_tai_khoan_gntb.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ten_tai_khoan_gntb.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ten_tai_khoan_gntb.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ten_tai_khoan_gntb.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ten_tai_khoan_gntb.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ten_tai_khoan_gntb.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ten_tai_khoan_gntb.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ten_tai_khoan_gntb.Location = new System.Drawing.Point(53, 79);
+            this.ten_tai_khoan_gntb.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ten_tai_khoan_gntb.Name = "ten_tai_khoan_gntb";
+            this.ten_tai_khoan_gntb.PlaceholderText = "";
+            this.ten_tai_khoan_gntb.SelectedText = "";
+            this.ten_tai_khoan_gntb.Size = new System.Drawing.Size(556, 58);
+            this.ten_tai_khoan_gntb.TabIndex = 0;
             // 
-            // label2
+            // tieu_de
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(53, 27);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 25);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Tên tài khoản";
+            this.tieu_de.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tieu_de.AutoSize = true;
+            this.tieu_de.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tieu_de.ForeColor = System.Drawing.Color.White;
+            this.tieu_de.Location = new System.Drawing.Point(131, 40);
+            this.tieu_de.Name = "tieu_de";
+            this.tieu_de.Size = new System.Drawing.Size(563, 42);
+            this.tieu_de.TabIndex = 2;
+            this.tieu_de.Text = "Phần mềm quản lý siêu thị mini";
+            this.tieu_de.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(53, 158);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 25);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Mật khẩu";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(461, 411);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(158, 25);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Quên mật khẩu";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(131, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(563, 42);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Phần mềm quản lý siêu thị mini";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Form1
+            // dang_nhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -195,7 +195,7 @@
             this.ImeMode = System.Windows.Forms.ImeMode.On;
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(774, 453);
-            this.Name = "Form1";
+            this.Name = "dang_nhap";
             this.Text = "Đăng nhập";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.dn_con.ResumeLayout(false);
@@ -213,10 +213,10 @@
         private Guna.UI2.WinForms.Guna2Button dang_nhap_gnbtn;
         private Guna.UI2.WinForms.Guna2TextBox mat_khau_gntb;
         private Guna.UI2.WinForms.Guna2TextBox ten_tai_khoan_gntb;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label quen_mk;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label tieu_de;
     }
 }
 
