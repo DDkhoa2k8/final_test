@@ -9,9 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using System.Data.SqlClient;
-using Twilio;
-using Twilio.Rest.Api.V2010.Account;
-using Twilio.Types;
 
 namespace final_test
 {
@@ -69,9 +66,9 @@ namespace final_test
             isQuen = true;
 
             //Lay sdt:
-            String code = "select SoDienThoai FROM TaiKhoan tk inner join NhanVien nv on tk.MaNhanVien = nv.MaNhanVien where tk.TenDangNhap = @Username";
+            String code = "select email FROM TaiKhoan tk inner join NhanVien nv on tk.MaNhanVien = nv.MaNhanVien where tk.TenDangNhap = @Username";
             con.Open();
-            String sdt;
+            String email;
 
             using (SqlCommand cmd = new SqlCommand(code, con))
             {
@@ -81,7 +78,7 @@ namespace final_test
                 {
                     if (reader.Read())
                     {
-                        sdt = reader["SoDienThoai"].ToString();
+                        email = reader["email"].ToString();
                     } else
                     {
                         MessageBox.Show("Tên tài khoản không tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -90,19 +87,10 @@ namespace final_test
                     }
                 }
             }
+            
 
-            const string accountSid = "AC98bd52441eb3282f5e32b08b69569490";
-            const string authToken = "a18f02c1ccdbc3b9956ff6a838eed0ac";//Hmm, do not use this in production code, it's just for demo purposes.
 
-            TwilioClient.Init(accountSid, authToken);
-
-            var message = MessageResource.Create(
-                body: "Chào bạn từ ứng dụng C#!",
-                from: new PhoneNumber("+15715002540"),
-                to: new PhoneNumber("+84563381372")
-            );
-
-            MessageBox.Show("Mã xác minh đã được gửi đến số điện thoại của bạn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(email);
         }
 
         private void DN()
