@@ -31,7 +31,7 @@
             this.dn_con = new System.Windows.Forms.TableLayoutPanel();
             this.dn = new Guna.UI2.WinForms.Guna2Panel();
             this.quen_mk = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.mat_khau_lable = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dang_nhap_gnbtn = new Guna.UI2.WinForms.Guna2Button();
             this.mat_khau_gntb = new Guna.UI2.WinForms.Guna2TextBox();
@@ -66,7 +66,7 @@
             this.dn.BorderColor = System.Drawing.Color.AliceBlue;
             this.dn.BorderRadius = 10;
             this.dn.Controls.Add(this.quen_mk);
-            this.dn.Controls.Add(this.label3);
+            this.dn.Controls.Add(this.mat_khau_lable);
             this.dn.Controls.Add(this.label2);
             this.dn.Controls.Add(this.dang_nhap_gnbtn);
             this.dn.Controls.Add(this.mat_khau_gntb);
@@ -92,15 +92,16 @@
             this.quen_mk.Text = "Quên mật khẩu";
             this.quen_mk.Click += new System.EventHandler(this.quen_mk_Click);
             // 
-            // label3
+            // mat_khau_lable
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(53, 158);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 25);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Mật khẩu";
+            this.mat_khau_lable.AutoSize = true;
+            this.mat_khau_lable.ForeColor = System.Drawing.Color.White;
+            this.mat_khau_lable.Location = new System.Drawing.Point(53, 158);
+            this.mat_khau_lable.Name = "mat_khau_lable";
+            this.mat_khau_lable.Size = new System.Drawing.Size(101, 25);
+            this.mat_khau_lable.TabIndex = 4;
+            this.mat_khau_lable.Text = "Mật khẩu";
+            this.mat_khau_lable.Click += new System.EventHandler(this.mat_khau_lable_Click);
             // 
             // label2
             // 
@@ -216,7 +217,7 @@
         private Guna.UI2.WinForms.Guna2TextBox mat_khau_gntb;
         private Guna.UI2.WinForms.Guna2TextBox ten_tai_khoan_gntb;
         private System.Windows.Forms.Label quen_mk;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label mat_khau_lable;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label tieu_de;
     }

@@ -13,7 +13,7 @@ namespace final_test
     public partial class menu : Form
     {
         public bool isQuen = false;
-
+        public String veriCode;
         public menu()
         {
             InitializeComponent();

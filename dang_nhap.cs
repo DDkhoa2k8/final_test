@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using System.Data.SqlClient;
+using System.Net;
+using System.Net.Mail;
 
 namespace final_test
 {
@@ -17,6 +19,8 @@ namespace final_test
         private string conStr;
         private SqlConnection con;
         public bool isQuen = false;
+        public String veriCode;
+        private String username_khi_quen;
 
         public dang_nhap()
         {
@@ -55,6 +59,25 @@ namespace final_test
 
         }
 
+        private void openMenu()
+        {
+            menu mn = new menu();
+            mn.Show();
+            mn.isQuen = isQuen;
+            mn.veriCode = veriCode;
+            mn.FormClosed += (s, args) =>
+            {
+                this.Show();
+                this.ten_tai_khoan_gntb.Text = "";
+                this.mat_khau_gntb.Text = "";
+                isQuen = false;
+                veriCode = null;
+                this.mat_khau_lable.Text = "Mật khẩu:";
+                username_khi_quen = null;
+            };
+            this.Hide();
+        }
+
         private void quen_mk_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(this.ten_tai_khoan_gntb.Text))
@@ -64,6 +87,8 @@ namespace final_test
             }
 
             isQuen = true;
+            username_khi_quen = this.ten_tai_khoan_gntb.Text;
+            this.mat_khau_lable.Text = "Mã xác minh:";
 
             //Lay sdt:
             String code = "select email FROM TaiKhoan tk inner join NhanVien nv on tk.MaNhanVien = nv.MaNhanVien where tk.TenDangNhap = @Username";
@@ -87,10 +112,35 @@ namespace final_test
                     }
                 }
             }
-            
 
+            var fromAddress = new MailAddress("ddkmgb999@gmail.com", "Dinh Dang Khoa");
+            var toAddress = new MailAddress(email, "");
+            const string fromPassword = "inwj tuna xvqq bhwe";
+            const string subject = "Mã xác minh.";
+            veriCode = Math.Abs(Guid.NewGuid().GetHashCode()).ToString("X").Substring(0, 6);
+            string body = "Mã xác minh là: " + veriCode;
 
-            MessageBox.Show(email);
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
+
+            MessageBox.Show("Mã xác minh đã được gửi đến email của bạn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            con.Close();
         }
 
         private void DN()
@@ -112,18 +162,7 @@ namespace final_test
 
                 if (count > 0)
                 {
-                    MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    menu mn = new menu();
-                    mn.Show();
-                    mn.isQuen = isQuen;
-                    mn.FormClosed += (s, args) =>
-                    {
-                        this.Show();
-                        this.ten_tai_khoan_gntb.Text = "";
-                        this.mat_khau_gntb.Text = "";
-                        isQuen = false;
-                    };
-                    this.Hide();
+                    openMenu();
                     return;
                 }
             }
@@ -134,7 +173,22 @@ namespace final_test
 
         private void DN_QMK()
         {
-            
+            if (String.IsNullOrEmpty(this.ten_tai_khoan_gntb.Text) || String.IsNullOrEmpty(this.mat_khau_gntb.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin đăng nhập!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (this.ten_tai_khoan_gntb.Text != username_khi_quen)
+            {
+                MessageBox.Show($"Tên tài khoản được dùng khác với tên tài khoản khi nhấn nút quên mật khẩu là {username_khi_quen}, hãy khởi động lại nếu muốn dùng tài khoản {this.ten_tai_khoan_gntb.Text}!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (this.mat_khau_gntb.Text == veriCode)
+            {
+                openMenu();
+            }
         }
 
         private void dang_nhap_gnbtn_Click(object sender, EventArgs e)
@@ -149,6 +203,11 @@ namespace final_test
         }
 
         private void mat_khau_gntb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mat_khau_lable_Click(object sender, EventArgs e)
         {
 
         }
