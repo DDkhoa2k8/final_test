@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,35 @@ namespace final_test
         public bao_cao()
         {
             InitializeComponent();
+        }
+
+        private void ThongKeHoaDon()
+        {
+            string connectionString = "Data Source=LUGHX\\MSSQLSERVER02;Initial Catalog=SieuThimini;Integrated Security=True;";
+            DateTime tuNgay = hsd_dt.Value.Date;
+            DateTime denNgay = hsd_dd.Value.Date;
+
+            string query = @"SELECT MaHoaDon, NgayLap, MaNhanVien, TongTien, Thue, ChietKhau, KhuyenMai, TrangThai
+                             FROM HoaDon
+                             WHERE NgayLap BETWEEN @TuNgay AND @DenNgay";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@TuNgay", tuNgay);
+                cmd.Parameters.AddWithValue("@DenNgay", denNgay);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dgvBaoCao.DataSource = dt;
+            }
+        }
+
+        private void btnThongKe_Click_1(object sender, EventArgs e)
+        {
+            ThongKeHoaDon();
         }
     }
 }
