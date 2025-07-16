@@ -12,6 +12,8 @@ namespace final_test
 {
     public partial class menu : Form
     {
+        public bool isQuen = false;
+
         public menu()
         {
             InitializeComponent();
@@ -76,6 +78,11 @@ namespace final_test
                 this.curForm.Close();
                 isOpen = false;
             }
+        }
+
+        private void menu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -90,7 +90,7 @@
             this.quen_mk.Size = new System.Drawing.Size(158, 25);
             this.quen_mk.TabIndex = 5;
             this.quen_mk.Text = "Quên mật khẩu";
-            this.quen_mk.Click += new System.EventHandler(this.label4_Click);
+            this.quen_mk.Click += new System.EventHandler(this.quen_mk_Click);
             // 
             // label3
             // 
@@ -127,6 +127,7 @@
             this.dang_nhap_gnbtn.Size = new System.Drawing.Size(556, 78);
             this.dang_nhap_gnbtn.TabIndex = 2;
             this.dang_nhap_gnbtn.Text = "Đăng Nhập";
+            this.dang_nhap_gnbtn.Click += new System.EventHandler(this.dang_nhap_gnbtn_Click);
             // 
             // mat_khau_gntb
             // 
@@ -148,6 +149,7 @@
             this.mat_khau_gntb.SelectedText = "";
             this.mat_khau_gntb.Size = new System.Drawing.Size(556, 59);
             this.mat_khau_gntb.TabIndex = 1;
+            this.mat_khau_gntb.TextChanged += new System.EventHandler(this.mat_khau_gntb_TextChanged);
             // 
             // ten_tai_khoan_gntb
             // 

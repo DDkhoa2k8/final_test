@@ -22,7 +22,7 @@ namespace final_test
             SetProcessDpiAwarenessContext(-4);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new menu());
+            Application.Run(new dang_nhap());
         }
     }
 }
