@@ -20,7 +20,7 @@ namespace final_test
 
         private void ThongKeHoaDon()
         {
-            string connectionString = "Data Source=LUGHX\\MSSQLSERVER02;Initial Catalog=SieuThimini;Integrated Security=True;";
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MyDb"].ToString();
             DateTime tuNgay = hsd_dt.Value.Date;
             DateTime denNgay = hsd_dd.Value.Date;
 
@@ -45,6 +45,16 @@ namespace final_test
         private void btnThongKe_Click_1(object sender, EventArgs e)
         {
             ThongKeHoaDon();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bao_cao_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
