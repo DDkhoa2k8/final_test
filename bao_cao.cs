@@ -20,7 +20,7 @@ namespace final_test
 
         private void ThongKeHoaDon()
         {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MyDb"].ToString();
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString;
             DateTime tuNgay = hsd_dt.Value.Date;
             DateTime denNgay = hsd_dd.Value.Date;
 
