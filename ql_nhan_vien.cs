@@ -18,6 +18,7 @@ namespace final_test
         {
             InitializeComponent();
             this.Load += ql_nhan_vien_Load;
+            txtTimKiem.TextChanged += guna2TextBox1_TextChanged;
         }
         private void ql_nhan_vien_Load(object sender, EventArgs e)
         {
@@ -32,17 +33,17 @@ namespace final_test
             {
                 conn.Open();
                 string query = @"
-            SELECT 
-                nv.MaNhanVien AS MaNV,
-                nv.HoTen AS TenNV,
-                nv.GioiTinh,
-                nv.NgaySinh,
-                nv.SoDienThoai AS SoDienThoai,
-                nv.ChucVu,
-                tk.TenDangNhap AS TenTK,
-                tk.MatKhau
-            FROM NhanVien nv
-            LEFT JOIN TaiKhoan tk ON nv.MaNhanVien = tk.MaNhanVien";
+                    SELECT 
+                        nv.MaNhanVien AS MaNV,
+                        nv.HoTen AS TenNV,
+                        nv.GioiTinh,
+                        nv.NgaySinh,
+                        nv.Email,
+                        nv.ChucVu,
+                        tk.TenDangNhap AS TenTK,
+                        tk.MatKhau
+                    FROM NhanVien nv
+                    LEFT JOIN TaiKhoan tk ON nv.MaNhanVien = tk.MaNhanVien";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
@@ -54,7 +55,7 @@ namespace final_test
         {
             txtMaNV.Clear();
             txtTenNV.Clear();
-            txtSDT.Clear();
+            txtEmail.Clear();
             cbGioiTinh.SelectedIndex = -1;
             dtpNgaySinh.Value = DateTime.Now;
             cbChucVu.SelectedIndex = -1;
@@ -72,14 +73,14 @@ namespace final_test
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"INSERT INTO NhanVien (HoTen, GioiTinh, NgaySinh, SoDienThoai, ChucVu)
-                         VALUES (@TenNV, @GioiTinh, @NgaySinh, @SoDienThoai, @ChucVu)";
+                string query = @"INSERT INTO NhanVien (HoTen, GioiTinh, NgaySinh, Email, ChucVu)
+                                 VALUES (@TenNV, @GioiTinh, @NgaySinh, @Email, @ChucVu)";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@TenNV", txtTenNV.Text);
                 cmd.Parameters.AddWithValue("@GioiTinh", cbGioiTinh.Text);
                 cmd.Parameters.AddWithValue("@NgaySinh", dtpNgaySinh.Value);
-                cmd.Parameters.AddWithValue("@SoDienThoai", txtSDT.Text);
+                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@ChucVu", cbChucVu.Text);
 
                 conn.Open();
@@ -95,25 +96,24 @@ namespace final_test
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"
-                                 UPDATE NhanVien SET 
-                                 HoTen = @TenNV, 
-                                GioiTinh = @GioiTinh, 
-                                SoDienThoai = @SoDienThoai, 
-                                NgaySinh = @NgaySinh, 
-                                ChucVu = @ChucVu 
-                            WHERE MaNhanVien = @MaNV;
+                    UPDATE NhanVien SET 
+                        HoTen = @TenNV, 
+                        GioiTinh = @GioiTinh, 
+                        Email = @Email, 
+                        NgaySinh = @NgaySinh, 
+                        ChucVu = @ChucVu 
+                    WHERE MaNhanVien = @MaNV;
 
-                            UPDATE TaiKhoan SET 
-                                TenDangNhap = @TaiKhoan, 
-                                MatKhau = @MatKhau 
-                            WHERE MaNhanVien = @MaNV;";
-
+                    UPDATE TaiKhoan SET 
+                        TenDangNhap = @TaiKhoan, 
+                        MatKhau = @MatKhau 
+                    WHERE MaNhanVien = @MaNV;";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@MaNV", txtMaNV.Text);
                 cmd.Parameters.AddWithValue("@TenNV", txtTenNV.Text);
                 cmd.Parameters.AddWithValue("@GioiTinh", cbGioiTinh.Text);
-                cmd.Parameters.AddWithValue("@SoDienThoai", txtSDT.Text);
+                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@NgaySinh", dtpNgaySinh.Value);
                 cmd.Parameters.AddWithValue("@ChucVu", cbChucVu.Text);
                 cmd.Parameters.AddWithValue("@TaiKhoan", txtTaiKhoan.Text);
@@ -154,7 +154,7 @@ namespace final_test
                 txtTenNV.Text = dgvNhanVien.Rows[e.RowIndex].Cells["TenNV"].Value.ToString();
                 cbGioiTinh.Text = dgvNhanVien.Rows[e.RowIndex].Cells["GioiTinh"].Value.ToString();
                 dtpNgaySinh.Value = Convert.ToDateTime(dgvNhanVien.Rows[e.RowIndex].Cells["NgaySinh"].Value);
-                txtSDT.Text = dgvNhanVien.Rows[e.RowIndex].Cells["SoDienThoai"].Value.ToString();
+                txtEmail.Text = dgvNhanVien.Rows[e.RowIndex].Cells["Email"].Value.ToString();
                 cbChucVu.Text = dgvNhanVien.Rows[e.RowIndex].Cells["ChucVu"].Value.ToString();
                 txtTaiKhoan.Text = dgvNhanVien.Rows[e.RowIndex].Cells["TenTK"].Value?.ToString() ?? "";
                 txtMatKhau.Text = dgvNhanVien.Rows[e.RowIndex].Cells["MatKhau"].Value?.ToString() ?? "";
@@ -172,6 +172,53 @@ namespace final_test
                 {
                     cbChucVu.Items.Add(reader["ChucVu"].ToString());
                 }
+            }
+        }
+
+        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            TimKiemNhanVien();
+        }
+        private void TimKiemNhanVien()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string keyword = txtTimKiem.Text.Trim();
+
+                    string query = @"
+                SELECT 
+                    nv.MaNhanVien AS MaNV,
+                    nv.HoTen AS TenNV,
+                    nv.GioiTinh,
+                    nv.NgaySinh,
+                    nv.Email,
+                    nv.ChucVu,
+                    tk.TenDangNhap AS TenTK,
+                    tk.MatKhau
+                FROM NhanVien nv
+                LEFT JOIN TaiKhoan tk ON nv.MaNhanVien = tk.MaNhanVien
+                WHERE
+                    nv.HoTen LIKE @TuKhoa OR
+                    nv.Email LIKE @TuKhoa OR
+                    nv.MaNhanVien LIKE @TuKhoa";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@TuKhoa", "%" + keyword + "%");
+
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dgvNhanVien.DataSource = dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
             }
         }
     }

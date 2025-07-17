@@ -152,14 +152,20 @@ namespace final_test
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT * FROM NhaCungCap WHERE TenNhaCungCap LIKE @TuKhoa";
+                    string query = "SELECT * FROM NhaCungCap WHERE LOWER(TenNhaCungCap) LIKE @TuKhoa";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@TuKhoa", "%" + txtTimKiem.Text + "%");
+                        string keyword = txtTimKiem.Text.Trim().ToLower();
+                        cmd.Parameters.AddWithValue("@TuKhoa", "%" + keyword + "%");
+
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
+
                         dgvNCC.DataSource = dt;
+
+                        if (dt.Rows.Count == 0)
+                            MessageBox.Show("Không tìm thấy nhà cung cấp nào phù hợp.");
                     }
                 }
             }
