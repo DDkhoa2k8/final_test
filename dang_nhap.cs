@@ -21,6 +21,7 @@ namespace final_test
         public bool isQuen = false;
         public String veriCode;
         private String username_khi_quen;
+        private String vaitro;
 
         public dang_nhap()
         {
@@ -59,12 +60,13 @@ namespace final_test
 
         }
 
-        private void openMenu()
+        private void openMenu(String input_vaitro)
         {
             menu mn = new menu();
             mn.Show();
             mn.isQuen = isQuen;
             mn.veriCode = veriCode;
+            mn.vaitro = input_vaitro;
             mn.FormClosed += (s, args) =>
             {
                 this.Show();
@@ -91,7 +93,7 @@ namespace final_test
             this.mat_khau_lable.Text = "Mã xác minh:";
 
             //Lay sdt:
-            String code = "select email FROM TaiKhoan tk inner join NhanVien nv on tk.MaNhanVien = nv.MaNhanVien where tk.TenDangNhap = @Username";
+            String code = "select email, vaitro FROM TaiKhoan tk inner join NhanVien nv on tk.MaNhanVien = nv.MaNhanVien where tk.TenDangNhap = @Username";
             con.Open();
             String email;
 
@@ -104,6 +106,7 @@ namespace final_test
                     if (reader.Read())
                     {
                         email = reader["email"].ToString();
+                        vaitro = reader["vaitro"].ToString();
                     } else
                     {
                         MessageBox.Show("Tên tài khoản không tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -151,19 +154,21 @@ namespace final_test
                 return;
             }
 
-            String code = "select count(*) FROM TaiKhoan where TenDangNhap = @Username and MatKhau = @Password";
+            String code = "select vaitro FROM TaiKhoan where TenDangNhap = @Username and MatKhau = @Password";
             con.Open();
 
             using (SqlCommand cmd = new SqlCommand(code, con))
             {
                 cmd.Parameters.AddWithValue("@Username", this.ten_tai_khoan_gntb.Text);
                 cmd.Parameters.AddWithValue("@Password", this.mat_khau_gntb.Text);
-                int count = (int)cmd.ExecuteScalar();
 
-                if (count > 0)
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    openMenu();
-                    return;
+                    while (reader.Read()) {
+                        openMenu(reader["vaitro"].ToString());
+                        con.Close();
+                        return;
+                    }
                 }
             }
 
@@ -187,7 +192,7 @@ namespace final_test
 
             if (this.mat_khau_gntb.Text == veriCode)
             {
-                openMenu();
+                openMenu(vaitro);
             }
         }
 
