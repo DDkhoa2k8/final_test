@@ -1,4 +1,4 @@
-﻿namespace final_test
+namespace final_test
 {
     partial class doi_mk
     {

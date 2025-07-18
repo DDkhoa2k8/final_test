@@ -101,12 +101,13 @@
             this.op_con.Controls.Add(this.op_ql_dm, 2, 0);
             this.op_con.Controls.Add(this.op_ql_sp, 1, 0);
             this.op_con.Controls.Add(this.op_ql_bh, 0, 0);
-            this.op_con.Location = new System.Drawing.Point(396, 0);
+            this.op_con.Location = new System.Drawing.Point(264, 0);
+            this.op_con.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.op_con.Name = "op_con";
             this.op_con.RowCount = 2;
             this.op_con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.op_con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.op_con.Size = new System.Drawing.Size(1585, 937);
+            this.op_con.Size = new System.Drawing.Size(1059, 647);
             this.op_con.TabIndex = 0;
             this.op_con.Paint += new System.Windows.Forms.PaintEventHandler(this.op_con_Paint);
             // 
@@ -117,10 +118,10 @@
             this.op_ql_ncc.Controls.Add(this.label8);
             this.op_ql_ncc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.op_ql_ncc.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.op_ql_ncc.Location = new System.Drawing.Point(1218, 498);
-            this.op_ql_ncc.Margin = new System.Windows.Forms.Padding(30);
+            this.op_ql_ncc.Location = new System.Drawing.Point(812, 342);
+            this.op_ql_ncc.Margin = new System.Windows.Forms.Padding(20, 19, 20, 19);
             this.op_ql_ncc.Name = "op_ql_ncc";
-            this.op_ql_ncc.Size = new System.Drawing.Size(337, 409);
+            this.op_ql_ncc.Size = new System.Drawing.Size(227, 286);
             this.op_ql_ncc.TabIndex = 7;
             // 
             // guna2PictureBox8
@@ -135,8 +136,9 @@
             this.guna2PictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox8.Image")));
             this.guna2PictureBox8.ImageRotate = 0F;
             this.guna2PictureBox8.Location = new System.Drawing.Point(0, 0);
+            this.guna2PictureBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2PictureBox8.Name = "guna2PictureBox8";
-            this.guna2PictureBox8.Size = new System.Drawing.Size(337, 354);
+            this.guna2PictureBox8.Size = new System.Drawing.Size(227, 251);
             this.guna2PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox8.TabIndex = 2;
             this.guna2PictureBox8.TabStop = false;
@@ -149,9 +151,10 @@
             this.label8.Enabled = false;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(0, 354);
+            this.label8.Location = new System.Drawing.Point(0, 251);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(337, 55);
+            this.label8.Size = new System.Drawing.Size(227, 35);
             this.label8.TabIndex = 1;
             this.label8.Text = "Quản lý nhà cung cấp";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -163,10 +166,10 @@
             this.op_ql_nh.Controls.Add(this.label7);
             this.op_ql_nh.Dock = System.Windows.Forms.DockStyle.Fill;
             this.op_ql_nh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.op_ql_nh.Location = new System.Drawing.Point(822, 498);
-            this.op_ql_nh.Margin = new System.Windows.Forms.Padding(30);
+            this.op_ql_nh.Location = new System.Drawing.Point(548, 342);
+            this.op_ql_nh.Margin = new System.Windows.Forms.Padding(20, 19, 20, 19);
             this.op_ql_nh.Name = "op_ql_nh";
-            this.op_ql_nh.Size = new System.Drawing.Size(336, 409);
+            this.op_ql_nh.Size = new System.Drawing.Size(224, 286);
             this.op_ql_nh.TabIndex = 6;
             // 
             // guna2PictureBox7
@@ -181,8 +184,9 @@
             this.guna2PictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox7.Image")));
             this.guna2PictureBox7.ImageRotate = 0F;
             this.guna2PictureBox7.Location = new System.Drawing.Point(0, 0);
+            this.guna2PictureBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2PictureBox7.Name = "guna2PictureBox7";
-            this.guna2PictureBox7.Size = new System.Drawing.Size(336, 354);
+            this.guna2PictureBox7.Size = new System.Drawing.Size(224, 251);
             this.guna2PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox7.TabIndex = 2;
             this.guna2PictureBox7.TabStop = false;
@@ -195,9 +199,10 @@
             this.label7.Enabled = false;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(0, 354);
+            this.label7.Location = new System.Drawing.Point(0, 251);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(336, 55);
+            this.label7.Size = new System.Drawing.Size(224, 35);
             this.label7.TabIndex = 1;
             this.label7.Text = "Quản lý nhập hàng";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -209,10 +214,10 @@
             this.op_bc.Controls.Add(this.label6);
             this.op_bc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.op_bc.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.op_bc.Location = new System.Drawing.Point(426, 498);
-            this.op_bc.Margin = new System.Windows.Forms.Padding(30);
+            this.op_bc.Location = new System.Drawing.Point(284, 342);
+            this.op_bc.Margin = new System.Windows.Forms.Padding(20, 19, 20, 19);
             this.op_bc.Name = "op_bc";
-            this.op_bc.Size = new System.Drawing.Size(336, 409);
+            this.op_bc.Size = new System.Drawing.Size(224, 286);
             this.op_bc.TabIndex = 5;
             // 
             // guna2PictureBox6
@@ -227,8 +232,9 @@
             this.guna2PictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox6.Image")));
             this.guna2PictureBox6.ImageRotate = 0F;
             this.guna2PictureBox6.Location = new System.Drawing.Point(0, 0);
+            this.guna2PictureBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2PictureBox6.Name = "guna2PictureBox6";
-            this.guna2PictureBox6.Size = new System.Drawing.Size(336, 354);
+            this.guna2PictureBox6.Size = new System.Drawing.Size(224, 251);
             this.guna2PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox6.TabIndex = 2;
             this.guna2PictureBox6.TabStop = false;
@@ -241,9 +247,10 @@
             this.label6.Enabled = false;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(0, 354);
+            this.label6.Location = new System.Drawing.Point(0, 251);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(336, 55);
+            this.label6.Size = new System.Drawing.Size(224, 35);
             this.label6.TabIndex = 1;
             this.label6.Text = "Báo cáo – thống kê";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -255,10 +262,10 @@
             this.op_ql_hd.Controls.Add(this.label5);
             this.op_ql_hd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.op_ql_hd.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.op_ql_hd.Location = new System.Drawing.Point(30, 498);
-            this.op_ql_hd.Margin = new System.Windows.Forms.Padding(30);
+            this.op_ql_hd.Location = new System.Drawing.Point(20, 342);
+            this.op_ql_hd.Margin = new System.Windows.Forms.Padding(20, 19, 20, 19);
             this.op_ql_hd.Name = "op_ql_hd";
-            this.op_ql_hd.Size = new System.Drawing.Size(336, 409);
+            this.op_ql_hd.Size = new System.Drawing.Size(224, 286);
             this.op_ql_hd.TabIndex = 4;
             // 
             // guna2PictureBox5
@@ -273,9 +280,10 @@
             this.guna2PictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox5.Image")));
             this.guna2PictureBox5.ImageRotate = 0F;
             this.guna2PictureBox5.Location = new System.Drawing.Point(0, 0);
+            this.guna2PictureBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2PictureBox5.Name = "guna2PictureBox5";
-            this.guna2PictureBox5.Padding = new System.Windows.Forms.Padding(20);
-            this.guna2PictureBox5.Size = new System.Drawing.Size(336, 354);
+            this.guna2PictureBox5.Padding = new System.Windows.Forms.Padding(13, 13, 13, 13);
+            this.guna2PictureBox5.Size = new System.Drawing.Size(224, 251);
             this.guna2PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox5.TabIndex = 2;
             this.guna2PictureBox5.TabStop = false;
@@ -288,9 +296,10 @@
             this.label5.Enabled = false;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(0, 354);
+            this.label5.Location = new System.Drawing.Point(0, 251);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(336, 55);
+            this.label5.Size = new System.Drawing.Size(224, 35);
             this.label5.TabIndex = 1;
             this.label5.Text = "Quản lý hóa đơn";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -302,10 +311,10 @@
             this.op_ql_nv.Controls.Add(this.label4);
             this.op_ql_nv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.op_ql_nv.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.op_ql_nv.Location = new System.Drawing.Point(1218, 30);
-            this.op_ql_nv.Margin = new System.Windows.Forms.Padding(30);
+            this.op_ql_nv.Location = new System.Drawing.Point(812, 19);
+            this.op_ql_nv.Margin = new System.Windows.Forms.Padding(20, 19, 20, 19);
             this.op_ql_nv.Name = "op_ql_nv";
-            this.op_ql_nv.Size = new System.Drawing.Size(337, 408);
+            this.op_ql_nv.Size = new System.Drawing.Size(227, 285);
             this.op_ql_nv.TabIndex = 3;
             // 
             // guna2PictureBox4
@@ -320,8 +329,9 @@
             this.guna2PictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox4.Image")));
             this.guna2PictureBox4.ImageRotate = 0F;
             this.guna2PictureBox4.Location = new System.Drawing.Point(0, 0);
+            this.guna2PictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2PictureBox4.Name = "guna2PictureBox4";
-            this.guna2PictureBox4.Size = new System.Drawing.Size(337, 353);
+            this.guna2PictureBox4.Size = new System.Drawing.Size(227, 250);
             this.guna2PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox4.TabIndex = 2;
             this.guna2PictureBox4.TabStop = false;
@@ -334,9 +344,10 @@
             this.label4.Enabled = false;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(0, 353);
+            this.label4.Location = new System.Drawing.Point(0, 250);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(337, 55);
+            this.label4.Size = new System.Drawing.Size(227, 35);
             this.label4.TabIndex = 1;
             this.label4.Text = "Quản lý nhân viên";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -348,10 +359,10 @@
             this.op_ql_dm.Controls.Add(this.label3);
             this.op_ql_dm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.op_ql_dm.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.op_ql_dm.Location = new System.Drawing.Point(822, 30);
-            this.op_ql_dm.Margin = new System.Windows.Forms.Padding(30);
+            this.op_ql_dm.Location = new System.Drawing.Point(548, 19);
+            this.op_ql_dm.Margin = new System.Windows.Forms.Padding(20, 19, 20, 19);
             this.op_ql_dm.Name = "op_ql_dm";
-            this.op_ql_dm.Size = new System.Drawing.Size(336, 408);
+            this.op_ql_dm.Size = new System.Drawing.Size(224, 285);
             this.op_ql_dm.TabIndex = 2;
             // 
             // guna2PictureBox3
@@ -366,8 +377,9 @@
             this.guna2PictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox3.Image")));
             this.guna2PictureBox3.ImageRotate = 0F;
             this.guna2PictureBox3.Location = new System.Drawing.Point(0, 0);
+            this.guna2PictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2PictureBox3.Name = "guna2PictureBox3";
-            this.guna2PictureBox3.Size = new System.Drawing.Size(336, 353);
+            this.guna2PictureBox3.Size = new System.Drawing.Size(224, 250);
             this.guna2PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox3.TabIndex = 2;
             this.guna2PictureBox3.TabStop = false;
@@ -380,9 +392,10 @@
             this.label3.Enabled = false;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(0, 353);
+            this.label3.Location = new System.Drawing.Point(0, 250);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(336, 55);
+            this.label3.Size = new System.Drawing.Size(224, 35);
             this.label3.TabIndex = 1;
             this.label3.Text = "Quản lý danh mục";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -394,10 +407,10 @@
             this.op_ql_sp.Controls.Add(this.label2);
             this.op_ql_sp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.op_ql_sp.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.op_ql_sp.Location = new System.Drawing.Point(426, 30);
-            this.op_ql_sp.Margin = new System.Windows.Forms.Padding(30);
+            this.op_ql_sp.Location = new System.Drawing.Point(284, 19);
+            this.op_ql_sp.Margin = new System.Windows.Forms.Padding(20, 19, 20, 19);
             this.op_ql_sp.Name = "op_ql_sp";
-            this.op_ql_sp.Size = new System.Drawing.Size(336, 408);
+            this.op_ql_sp.Size = new System.Drawing.Size(224, 285);
             this.op_ql_sp.TabIndex = 1;
             // 
             // guna2PictureBox2
@@ -412,8 +425,9 @@
             this.guna2PictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox2.Image")));
             this.guna2PictureBox2.ImageRotate = 0F;
             this.guna2PictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.guna2PictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2PictureBox2.Name = "guna2PictureBox2";
-            this.guna2PictureBox2.Size = new System.Drawing.Size(336, 353);
+            this.guna2PictureBox2.Size = new System.Drawing.Size(224, 250);
             this.guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox2.TabIndex = 2;
             this.guna2PictureBox2.TabStop = false;
@@ -426,9 +440,10 @@
             this.label2.Enabled = false;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(0, 353);
+            this.label2.Location = new System.Drawing.Point(0, 250);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(336, 55);
+            this.label2.Size = new System.Drawing.Size(224, 35);
             this.label2.TabIndex = 1;
             this.label2.Text = "Quản lý sản phẩm";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -441,10 +456,10 @@
             this.op_ql_bh.Controls.Add(this.label1);
             this.op_ql_bh.Dock = System.Windows.Forms.DockStyle.Fill;
             this.op_ql_bh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.op_ql_bh.Location = new System.Drawing.Point(30, 30);
-            this.op_ql_bh.Margin = new System.Windows.Forms.Padding(30);
+            this.op_ql_bh.Location = new System.Drawing.Point(20, 19);
+            this.op_ql_bh.Margin = new System.Windows.Forms.Padding(20, 19, 20, 19);
             this.op_ql_bh.Name = "op_ql_bh";
-            this.op_ql_bh.Size = new System.Drawing.Size(336, 408);
+            this.op_ql_bh.Size = new System.Drawing.Size(224, 285);
             this.op_ql_bh.TabIndex = 0;
             // 
             // guna2PictureBox1
@@ -459,8 +474,9 @@
             this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
             this.guna2PictureBox1.ImageRotate = 0F;
             this.guna2PictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(336, 353);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(224, 250);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox1.TabIndex = 1;
             this.guna2PictureBox1.TabStop = false;
@@ -474,9 +490,10 @@
             this.label1.Enabled = false;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 353);
+            this.label1.Location = new System.Drawing.Point(0, 250);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(336, 55);
+            this.label1.Size = new System.Drawing.Size(224, 35);
             this.label1.TabIndex = 0;
             this.label1.Text = "Bán hàng";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -494,8 +511,9 @@
             this.guna2GradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.guna2GradientPanel1.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
+            this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
-            this.guna2GradientPanel1.Size = new System.Drawing.Size(397, 936);
+            this.guna2GradientPanel1.Size = new System.Drawing.Size(265, 661);
             this.guna2GradientPanel1.TabIndex = 1;
             // 
             // close_child_form
@@ -508,9 +526,10 @@
             this.close_child_form.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.close_child_form.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.close_child_form.ForeColor = System.Drawing.Color.White;
-            this.close_child_form.Location = new System.Drawing.Point(0, 711);
+            this.close_child_form.Location = new System.Drawing.Point(0, 517);
+            this.close_child_form.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.close_child_form.Name = "close_child_form";
-            this.close_child_form.Size = new System.Drawing.Size(397, 75);
+            this.close_child_form.Size = new System.Drawing.Size(265, 48);
             this.close_child_form.TabIndex = 5;
             this.close_child_form.Text = "Thoát form tính năng hiện tại";
             this.close_child_form.Click += new System.EventHandler(this.close_child_form_Click);
@@ -525,9 +544,10 @@
             this.doi_mk.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(110)))), ((int)(((byte)(253)))));
             this.doi_mk.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.doi_mk.ForeColor = System.Drawing.Color.White;
-            this.doi_mk.Location = new System.Drawing.Point(0, 786);
+            this.doi_mk.Location = new System.Drawing.Point(0, 565);
+            this.doi_mk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.doi_mk.Name = "doi_mk";
-            this.doi_mk.Size = new System.Drawing.Size(397, 75);
+            this.doi_mk.Size = new System.Drawing.Size(265, 48);
             this.doi_mk.TabIndex = 4;
             this.doi_mk.Text = "Đổi mật khẩu";
             this.doi_mk.Click += new System.EventHandler(this.doi_mk_Click);
@@ -542,9 +562,10 @@
             this.dang_xuat.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.dang_xuat.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dang_xuat.ForeColor = System.Drawing.Color.White;
-            this.dang_xuat.Location = new System.Drawing.Point(0, 861);
+            this.dang_xuat.Location = new System.Drawing.Point(0, 613);
+            this.dang_xuat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dang_xuat.Name = "dang_xuat";
-            this.dang_xuat.Size = new System.Drawing.Size(397, 75);
+            this.dang_xuat.Size = new System.Drawing.Size(265, 48);
             this.dang_xuat.TabIndex = 3;
             this.dang_xuat.Text = "Đăng xuất";
             this.dang_xuat.Click += new System.EventHandler(this.dang_xuat_Click);
@@ -554,9 +575,10 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(17, 127);
+            this.label9.Location = new System.Drawing.Point(11, 81);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(380, 91);
+            this.label9.Size = new System.Drawing.Size(253, 58);
             this.label9.TabIndex = 2;
             this.label9.Text = "Bạn đã đăng nhập với tư cách là: ...\r\n";
             this.label9.Click += new System.EventHandler(this.label9_Click);
@@ -567,23 +589,26 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(12, 21);
+            this.label10.Location = new System.Drawing.Point(8, 13);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(276, 55);
+            this.label10.Size = new System.Drawing.Size(173, 36);
             this.label10.TabIndex = 1;
             this.label10.Text = "Xin chào! ...\r\n";
             this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1980, 936);
+            this.ClientSize = new System.Drawing.Size(1285, 661);
             this.Controls.Add(this.guna2GradientPanel1);
             this.Controls.Add(this.op_con);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.MinimumSize = new System.Drawing.Size(2006, 1007);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(1285, 661);
             this.Name = "menu";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
