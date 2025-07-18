@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -64,10 +64,19 @@ namespace final_test
         private void openMenu(String input_vaitro)
         {
             menu mn = new menu();
+<<<<<<< HEAD
+            mn.TenDangNhap = this.ten_tai_khoan_gntb.Text;  // truyền tên đăng nhập
+            mn.ChucVu = input_vaitro;                      // truyền vai trò (chức vụ)
+            mn.isQuen = isQuen;
+            mn.veriCode = veriCode;
+            mn.vaitro = input_vaitro;
+
+=======
             mn.Show();
             mn.isQuen = isQuen;
             mn.veriCode = veriCode;
             mn.vaitro = input_vaitro;
+>>>>>>> 489e9b4b93cd58f902097e21f9b66366ef0cc356
             mn.FormClosed += (s, args) =>
             {
                 this.Show();
@@ -78,7 +87,13 @@ namespace final_test
                 this.mat_khau_lable.Text = "Mật khẩu:";
                 username_khi_quen = null;
             };
+<<<<<<< HEAD
+
             this.Hide();
+            mn.Show();
+=======
+            this.Hide();
+>>>>>>> 489e9b4b93cd58f902097e21f9b66366ef0cc356
         }
 
         private void quen_mk_Click(object sender, EventArgs e)
