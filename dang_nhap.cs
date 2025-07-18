@@ -26,6 +26,7 @@ namespace final_test
         public dang_nhap()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             conStr = System.Configuration.ConfigurationManager.ConnectionStrings["MyDb"].ToString();
             con = new SqlConnection(conStr);
         }
@@ -215,6 +216,11 @@ namespace final_test
         private void mat_khau_lable_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
