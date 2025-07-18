@@ -14,6 +14,7 @@ namespace final_test
     public partial class ql_nhan_vien : Form
     {
         string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString;
+        string[] admin = { "Quản lý", "dev" };
         public ql_nhan_vien()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace final_test
             cbChucVu.DropDownStyle = ComboBoxStyle.DropDownList;
             LoadData();
             LoadChucVu();
+
         }
         void LoadData()
         {
@@ -65,7 +67,12 @@ namespace final_test
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTenNV.Text) || cbGioiTinh.SelectedIndex == -1)
+            if (string.IsNullOrWhiteSpace(txtTenNV.Text) ||
+                cbGioiTinh.SelectedIndex == -1 ||
+                string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                cbChucVu.SelectedIndex == -1 ||
+                string.IsNullOrWhiteSpace(txtTaiKhoan.Text) ||
+                string.IsNullOrWhiteSpace(txtMatKhau.Text))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");
                 return;
@@ -74,7 +81,7 @@ namespace final_test
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"INSERT INTO NhanVien (HoTen, GioiTinh, NgaySinh, Email, ChucVu)
-                                 VALUES (@TenNV, @GioiTinh, @NgaySinh, @Email, @ChucVu)";
+                                 VALUES (@TenNV, @GioiTinh, @NgaySinh, @Email, @ChucVu); SELECT SCOPE_IDENTITY();";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@TenNV", txtTenNV.Text);
@@ -84,7 +91,17 @@ namespace final_test
                 cmd.Parameters.AddWithValue("@ChucVu", cbChucVu.Text);
 
                 conn.Open();
-                cmd.ExecuteNonQuery();
+                int maNV = Convert.ToInt32(cmd.ExecuteScalar());
+
+                query = @"INSERT INTO TaiKhoan (MaNhanVien, TenDangNhap, MatKhau, vaitro)
+                                 VALUES (@MaNV, @TaiKhoan, @MatKhau, @vaiTro);";
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaNV", maNV);
+                cmd.Parameters.AddWithValue("@TaiKhoan", txtTaiKhoan.Text);
+                cmd.Parameters.AddWithValue("@MatKhau", txtMatKhau.Text);
+                cmd.Parameters.AddWithValue("@vaiTro", (admin.Contains<String>(this.cbChucVu.Text) ? "Admin" : "Nhân viên"));
+
+                cmd.ExecuteScalar();
                 LoadData();
                 ClearInput();
                 MessageBox.Show("Đã thêm nhân viên.");
@@ -134,7 +151,7 @@ namespace final_test
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string query = "DELETE FROM NhanVien WHERE MaNhanVien = @MaNV";
+                    string query = "DELETE from TaiKhoan where MaNhanVien = @MaNV;DELETE FROM NhanVien WHERE MaNhanVien = @MaNV;";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@MaNV", txtMaNV.Text);
                     conn.Open();
@@ -146,9 +163,9 @@ namespace final_test
             }
         }
 
-        private void dgvNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && e.RowIndex < dgvNhanVien.RowCount - 1)
             {
                 txtMaNV.Text = dgvNhanVien.Rows[e.RowIndex].Cells["MaNV"].Value.ToString();
                 txtTenNV.Text = dgvNhanVien.Rows[e.RowIndex].Cells["TenNV"].Value.ToString();

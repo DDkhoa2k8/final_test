@@ -12,6 +12,11 @@ namespace final_test
 {
     public partial class ql_ban_hang : Form
     {
+        private void loadDT()
+        {
+
+        }
+
         public ql_ban_hang()
         {
             InitializeComponent();
@@ -29,7 +34,7 @@ namespace final_test
 
         private void ql_ban_hang_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
