@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,6 +29,8 @@ namespace final_test
         public menu()
         {
             InitializeComponent();
+            this.Load += new System.EventHandler(this.menu_Load);
+
             //this.DoubleBuffered = true;
             this.op_ql_bh.Click += new System.EventHandler(this.op_ql_bh_Click);
             this.op_ql_sp.Click += new System.EventHandler(this.op_ql_sp_Click);
@@ -135,9 +137,13 @@ namespace final_test
                 isOpen = false;
             }
         }
+        public string TenDangNhap { get; set; }
+        public string ChucVu { get; set; }
 
         private void menu_Load(object sender, EventArgs e)
         {
+            lblChao.Text = $"Xin chào! {TenDangNhap}";
+            lblQuyen.Text = $"Bạn đã đăng nhập với tư cách là: {ChucVu}";
         }
 
         private void dang_xuat_Click(object sender, EventArgs e)
