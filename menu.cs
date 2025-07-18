@@ -16,6 +16,7 @@ namespace final_test
         public bool isQuen = false;
         public String veriCode;
         public String vaitro;
+        public String username;
         //protected override CreateParams CreateParams
         //{
         //    get
@@ -148,8 +149,9 @@ namespace final_test
         private void doi_mk_Click(object sender, EventArgs e)
         {
             doi_mk doiMk = new doi_mk();
-            //doiMk.veriCode = this.veriCode;
-            //doiMk.isQuen = this.isQuen;
+            doiMk.veriCode = this.veriCode;
+            doiMk.isQuen = this.isQuen;
+            doiMk.username = this.username;
             doiMk.ShowDialog();
         }
     }
