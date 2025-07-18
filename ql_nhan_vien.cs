@@ -238,5 +238,10 @@ namespace final_test
                 MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
             }
         }
+
+        private void ql_nhan_vien_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -718,6 +718,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ql_nhan_vien";
             this.Text = "ql_nhan_vien";
+            this.Load += new System.EventHandler(this.ql_nhan_vien_Load_1);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
