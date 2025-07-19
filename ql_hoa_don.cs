@@ -225,5 +225,10 @@ namespace final_test
         {
             decimal khuyenMai = ParseKhuyenMai();
         }
+
+        private void ql_hoa_don_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
