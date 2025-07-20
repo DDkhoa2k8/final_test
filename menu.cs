@@ -64,7 +64,7 @@ namespace final_test
 
         }
 
-        private void showChildForm<F>(Guna2Panel op) where F : Form, new()
+        private F showChildForm<F>(Guna2Panel op) where F : Form, new()
         {
             F cf = new F();
             cf.TopLevel = false;
@@ -87,11 +87,13 @@ namespace final_test
             op.Dock = DockStyle.Fill;
             this.curForm = cf;
             isOpen = true;
+
+            return cf;
         }
 
         private void op_ql_bh_Click(object sender, EventArgs e)
         {
-            showChildForm<ql_ban_hang>(op_ql_bh);
+            showChildForm<ql_ban_hang>(op_ql_bh).username = username;
         }
 
         private void op_ql_sp_Click(object sender, EventArgs e)
