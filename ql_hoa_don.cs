@@ -32,77 +32,77 @@ namespace final_test
 
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-            if (dgvHoaDon.Rows.Count == 0)
-            {
-                MessageBox.Show("Chưa có sản phẩm trong hóa đơn!");
-                return;
-            }
+        //private void guna2Button1_Click(object sender, EventArgs e)
+        //{
+        //    if (dgvHoaDon.Rows.Count == 0)
+        //    {
+        //        MessageBox.Show("Chưa có sản phẩm trong hóa đơn!");
+        //        return;
+        //    }
 
-            decimal tongTien = 0;
-            foreach (DataGridViewRow row in dgvHoaDon.Rows)
-            {
-                tongTien += Convert.ToDecimal(row.Cells["DonGia"].Value);
-            }
+        //    decimal tongTien = 0;
+        //    foreach (DataGridViewRow row in dgvHoaDon.Rows)
+        //    {
+        //        tongTien += Convert.ToDecimal(row.Cells["DonGia"].Value);
+        //    }
 
-            decimal khuyenMai = 0;
-            if (txtKhuyenMai.Text.Contains("%"))
-                txtKhuyenMai.Text = txtKhuyenMai.Text.Replace("%", "");
+        //    decimal khuyenMai = 0;
+        //    if (txtKhuyenMai.Text.Contains("%"))
+        //        txtKhuyenMai.Text = txtKhuyenMai.Text.Replace("%", "");
 
-            if (decimal.TryParse(txtKhuyenMai.Text, out decimal km))
-            {
-                khuyenMai = km;
-            }
+        //    if (decimal.TryParse(txtKhuyenMai.Text, out decimal km))
+        //    {
+        //        khuyenMai = km;
+        //    }
 
-            decimal thanhTienSauKM = tongTien * (1 - (khuyenMai / 100));
-            decimal thue = thanhTienSauKM * 0.1m; // 10% thuế
-            decimal chietKhau = 0; // tuỳ ý
+        //    decimal thanhTienSauKM = tongTien * (1 - (khuyenMai / 100));
+        //    decimal thue = thanhTienSauKM * 0.1m; // 10% thuế
+        //    decimal chietKhau = 0; // tuỳ ý
 
-            int maHoaDonMoi = -1;
+        //    int maHoaDonMoi = -1;
 
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                con.Open();
+        //    using (SqlConnection con = new SqlConnection(connectionString))
+        //    {
+        //        con.Open();
 
-                // 1. Thêm hóa đơn
-                string queryHD = @"INSERT INTO HoaDon (NgayLap, TongTien, Thue, ChietKhau, KhuyenMai) 
-                           VALUES (GETDATE(), @TongTien, @Thue, @ChietKhau, @KhuyenMai);
-                           SELECT SCOPE_IDENTITY();";
+        //        // 1. Thêm hóa đơn
+        //        string queryHD = @"INSERT INTO HoaDon (NgayLap, TongTien, Thue, ChietKhau, KhuyenMai) 
+        //                   VALUES (GETDATE(), @TongTien, @Thue, @ChietKhau, @KhuyenMai);
+        //                   SELECT SCOPE_IDENTITY();";
 
-                SqlCommand cmdHD = new SqlCommand(queryHD, con);
-                cmdHD.Parameters.AddWithValue("@TongTien", thanhTienSauKM + thue);
-                cmdHD.Parameters.AddWithValue("@Thue", thue);
-                cmdHD.Parameters.AddWithValue("@ChietKhau", chietKhau);
-                cmdHD.Parameters.AddWithValue("@KhuyenMai", khuyenMai);
+        //        SqlCommand cmdHD = new SqlCommand(queryHD, con);
+        //        cmdHD.Parameters.AddWithValue("@TongTien", thanhTienSauKM + thue);
+        //        cmdHD.Parameters.AddWithValue("@Thue", thue);
+        //        cmdHD.Parameters.AddWithValue("@ChietKhau", chietKhau);
+        //        cmdHD.Parameters.AddWithValue("@KhuyenMai", khuyenMai);
 
-                maHoaDonMoi = Convert.ToInt32(cmdHD.ExecuteScalar());
+        //        maHoaDonMoi = Convert.ToInt32(cmdHD.ExecuteScalar());
 
-                // 2. Thêm chi tiết hóa đơn
-                foreach (DataGridViewRow row in dgvHoaDon.Rows)
-                {
-                    int maSP = Convert.ToInt32(row.Cells["MaSP"].Value);
-                    decimal donGia = Convert.ToDecimal(row.Cells["DonGia"].Value);
+        //        // 2. Thêm chi tiết hóa đơn
+        //        foreach (DataGridViewRow row in dgvHoaDon.Rows)
+        //        {
+        //            int maSP = Convert.ToInt32(row.Cells["MaSP"].Value);
+        //            decimal donGia = Convert.ToDecimal(row.Cells["DonGia"].Value);
 
-                    string queryCT = @"INSERT INTO ChiTietHoaDon (MaHoaDon, TenSP, DonGia) 
-                   VALUES (@MaHoaDon, @TenSP, @DonGia)";
-                    SqlCommand cmdCT = new SqlCommand(queryCT, con);
-                    cmdCT.Parameters.AddWithValue("@MaHoaDon", maHoaDonMoi);
-                    cmdCT.Parameters.AddWithValue("@TenSP", row.Cells["TenSP"].Value);
-                    cmdCT.Parameters.AddWithValue("@DonGia", row.Cells["DonGia"].Value);
-                    cmdCT.ExecuteNonQuery();
+        //            string queryCT = @"INSERT INTO ChiTietHoaDon (MaHoaDon, TenSP, DonGia) 
+        //           VALUES (@MaHoaDon, @TenSP, @DonGia)";
+        //            SqlCommand cmdCT = new SqlCommand(queryCT, con);
+        //            cmdCT.Parameters.AddWithValue("@MaHoaDon", maHoaDonMoi);
+        //            cmdCT.Parameters.AddWithValue("@TenSP", row.Cells["TenSP"].Value);
+        //            cmdCT.Parameters.AddWithValue("@DonGia", row.Cells["DonGia"].Value);
+        //            cmdCT.ExecuteNonQuery();
 
-                }
+        //        }
 
-                MessageBox.Show($"Thanh toán thành công! Mã hóa đơn: {maHoaDonMoi}");
-            }
+        //        MessageBox.Show($"Thanh toán thành công! Mã hóa đơn: {maHoaDonMoi}");
+        //    }
 
-            // Reset sau khi thanh toán
-            dgvHoaDon.Rows.Clear();
-            txtKhuyenMai.Text = "0%";
-            lblTongTien.Text = "0 VND";
-            LoadMaHoaDon(); // Cập nhật combobox mã hóa đơn
-        }
+        //    // Reset sau khi thanh toán
+        //    dgvHoaDon.Rows.Clear();
+        //    txtKhuyenMai.Text = "0%";
+        //    lblTongTien.Text = "0 VND";
+        //    LoadMaHoaDon(); // Cập nhật combobox mã hóa đơn
+        //}
         private void LoadSanPham()
         {
             using (SqlConnection con = new SqlConnection(connectionString))

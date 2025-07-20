@@ -262,9 +262,12 @@
     <None Include="Resources\x-symbol.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SieuThimini.mdf" />
+    <Content Include="SieuThimini.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SieuThimini_log.ldf">
       <DependentUpon>SieuThimini.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
