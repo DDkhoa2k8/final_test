@@ -46,6 +46,7 @@ namespace final_test
                     this.op_ql_nv.Visible = false;
                     this.op_ql_ncc.Visible = false;
                     this.op_ql_nh.Visible = false;
+                    this.hello_lable.Text = "Bạn đã đăng nhập với tư cách là: Nhân viên.";
                 }
             };
 

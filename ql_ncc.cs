@@ -18,10 +18,6 @@ namespace final_test
         {
             InitializeComponent();
         }
-        private void ql_ncc_Load(object sender, EventArgs e)
-        {
-            LoadNhaCungCap();
-        }
         private void LoadNhaCungCap()
         {
             try
@@ -212,6 +208,11 @@ namespace final_test
             }
 
             return true;
+        }
+
+        private void ql_ncc_Load(object sender, EventArgs e)
+        {
+            LoadNhaCungCap();
         }
     }
 }
