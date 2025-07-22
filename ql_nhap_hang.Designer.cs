@@ -110,12 +110,13 @@
             // DGVNhaphang
             // 
             this.DGVNhaphang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVNhaphang.Location = new System.Drawing.Point(4, 4);
-            this.DGVNhaphang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DGVNhaphang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVNhaphang.Location = new System.Drawing.Point(0, 40);
+            this.DGVNhaphang.Margin = new System.Windows.Forms.Padding(4);
             this.DGVNhaphang.Name = "DGVNhaphang";
             this.DGVNhaphang.RowHeadersWidth = 62;
             this.DGVNhaphang.RowTemplate.Height = 28;
-            this.DGVNhaphang.Size = new System.Drawing.Size(1479, 469);
+            this.DGVNhaphang.Size = new System.Drawing.Size(1491, 437);
             this.DGVNhaphang.TabIndex = 0;
             this.DGVNhaphang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVNhaphang_CellClick);
             // 
