@@ -123,7 +123,7 @@ namespace final_test
         }
         private void op_ql_hd_Click(object sender, EventArgs e)
         {
-            showChildForm<ql_nhap_hang>(op_ql_hd);
+            showChildForm<ql_hoa_don>(op_ql_hd);
         }
 
         private void op_bc_Click(object sender, EventArgs e)

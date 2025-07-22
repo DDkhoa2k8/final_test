@@ -14,12 +14,51 @@ namespace final_test
     public partial class ql_hoa_don : Form
     {
         string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString;
+
+        private void LoadChiTietHoaDon(int maHD)
+        {
+            dgvHoaDon.Rows.Clear();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = @"
+                SELECT s.TenSanPham, ct.DonGia
+                FROM ChiTietHoaDon ct
+                JOIN SanPham s ON ct.MaSanPham = s.MaSanPham
+                WHERE ct.MaHoaDon = @MaHoaDon";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@MaHoaDon", maHD);
+
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string tenSP = reader["TenSanPham"].ToString();
+                    decimal donGia = Convert.ToDecimal(reader["DonGia"]);
+                    dgvHoaDon.Rows.Add(tenSP, donGia);
+                }
+                reader.Close();
+            }
+
+            TinhTongTien();
+        }
+
         public ql_hoa_don()
         {
             InitializeComponent();
             LoadSanPham();
             LoadMaHoaDon();
             SetupDataGridView();
+            cboMaHoaDon.SelectedIndexChanged += cboMaHoaDon_SelectedIndexChanged;
+        }
+        private void cboMaHoaDon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboMaHoaDon.SelectedValue == null)
+                return;
+
+            int maHD = Convert.ToInt32(cboMaHoaDon.SelectedValue);
+            LoadChiTietHoaDon(maHD);
         }
 
         private void info_con_Paint(object sender, PaintEventArgs e)
@@ -32,77 +71,6 @@ namespace final_test
 
         }
 
-        //private void guna2Button1_Click(object sender, EventArgs e)
-        //{
-        //    if (dgvHoaDon.Rows.Count == 0)
-        //    {
-        //        MessageBox.Show("Chưa có sản phẩm trong hóa đơn!");
-        //        return;
-        //    }
-
-        //    decimal tongTien = 0;
-        //    foreach (DataGridViewRow row in dgvHoaDon.Rows)
-        //    {
-        //        tongTien += Convert.ToDecimal(row.Cells["DonGia"].Value);
-        //    }
-
-        //    decimal khuyenMai = 0;
-        //    if (txtKhuyenMai.Text.Contains("%"))
-        //        txtKhuyenMai.Text = txtKhuyenMai.Text.Replace("%", "");
-
-        //    if (decimal.TryParse(txtKhuyenMai.Text, out decimal km))
-        //    {
-        //        khuyenMai = km;
-        //    }
-
-        //    decimal thanhTienSauKM = tongTien * (1 - (khuyenMai / 100));
-        //    decimal thue = thanhTienSauKM * 0.1m; // 10% thuế
-        //    decimal chietKhau = 0; // tuỳ ý
-
-        //    int maHoaDonMoi = -1;
-
-        //    using (SqlConnection con = new SqlConnection(connectionString))
-        //    {
-        //        con.Open();
-
-        //        // 1. Thêm hóa đơn
-        //        string queryHD = @"INSERT INTO HoaDon (NgayLap, TongTien, Thue, ChietKhau, KhuyenMai) 
-        //                   VALUES (GETDATE(), @TongTien, @Thue, @ChietKhau, @KhuyenMai);
-        //                   SELECT SCOPE_IDENTITY();";
-
-        //        SqlCommand cmdHD = new SqlCommand(queryHD, con);
-        //        cmdHD.Parameters.AddWithValue("@TongTien", thanhTienSauKM + thue);
-        //        cmdHD.Parameters.AddWithValue("@Thue", thue);
-        //        cmdHD.Parameters.AddWithValue("@ChietKhau", chietKhau);
-        //        cmdHD.Parameters.AddWithValue("@KhuyenMai", khuyenMai);
-
-        //        maHoaDonMoi = Convert.ToInt32(cmdHD.ExecuteScalar());
-
-        //        // 2. Thêm chi tiết hóa đơn
-        //        foreach (DataGridViewRow row in dgvHoaDon.Rows)
-        //        {
-        //            int maSP = Convert.ToInt32(row.Cells["MaSP"].Value);
-        //            decimal donGia = Convert.ToDecimal(row.Cells["DonGia"].Value);
-
-        //            string queryCT = @"INSERT INTO ChiTietHoaDon (MaHoaDon, TenSP, DonGia) 
-        //           VALUES (@MaHoaDon, @TenSP, @DonGia)";
-        //            SqlCommand cmdCT = new SqlCommand(queryCT, con);
-        //            cmdCT.Parameters.AddWithValue("@MaHoaDon", maHoaDonMoi);
-        //            cmdCT.Parameters.AddWithValue("@TenSP", row.Cells["TenSP"].Value);
-        //            cmdCT.Parameters.AddWithValue("@DonGia", row.Cells["DonGia"].Value);
-        //            cmdCT.ExecuteNonQuery();
-
-        //        }
-
-        //        MessageBox.Show($"Thanh toán thành công! Mã hóa đơn: {maHoaDonMoi}");
-        //    }
-
-        //    // Reset sau khi thanh toán
-        //    dgvHoaDon.Rows.Clear();
-        //    txtKhuyenMai.Text = "0%";
-        //    lblTongTien.Text = "0 VND";
-        //    LoadMaHoaDon(); // Cập nhật combobox mã hóa đơn
-        //}
         private void LoadSanPham()
         {
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -147,6 +115,7 @@ namespace final_test
 
             dgvHoaDon.Rows.Add(tenSP, donGia);
             TinhTongTien();
+            SaveChiTietHoaDon();
         }
 
         private void btnSua_Click(object sender, EventArgs e)
@@ -160,6 +129,7 @@ namespace final_test
                 dgvHoaDon.CurrentRow.Cells["DonGia"].Value = donGia;
 
                 TinhTongTien();
+                SaveChiTietHoaDon();
             }
         }
 
@@ -169,15 +139,81 @@ namespace final_test
             {
                 dgvHoaDon.Rows.Remove(dgvHoaDon.CurrentRow);
                 TinhTongTien();
+                SaveChiTietHoaDon();
+            }
+        }
+
+        // Hàm tự động lưu chi tiết hóa đơn hiện tại vào DB
+        private void SaveChiTietHoaDon()
+        {
+            if (cboMaHoaDon.SelectedValue == null)
+                return;
+
+            int maHD = Convert.ToInt32(cboMaHoaDon.SelectedValue);
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                SqlCommand deleteCmd = new SqlCommand("DELETE FROM ChiTietHoaDon WHERE MaHoaDon = @MaHD", con);
+                deleteCmd.Parameters.AddWithValue("@MaHD", maHD);
+                deleteCmd.ExecuteNonQuery();
+
+                foreach (DataGridViewRow row in dgvHoaDon.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    string tenSP = row.Cells["TenSP"].Value.ToString();
+                    decimal donGia = Convert.ToDecimal(row.Cells["DonGia"].Value);
+
+                    SqlCommand getMaSP = new SqlCommand("SELECT MaSanPham FROM SanPham WHERE TenSanPham = @TenSP", con);
+                    getMaSP.Parameters.AddWithValue("@TenSP", tenSP);
+                    int maSP = Convert.ToInt32(getMaSP.ExecuteScalar());
+
+                    SqlCommand insertCmd = new SqlCommand(
+                        "INSERT INTO ChiTietHoaDon (MaHoaDon, MaSanPham, SoLuong, DonGia) VALUES (@MaHD, @MaSP, @SoLuong, @DonGia)", con);
+                    insertCmd.Parameters.AddWithValue("@MaHD", maHD);
+                    insertCmd.Parameters.AddWithValue("@MaSP", maSP);
+                    insertCmd.Parameters.AddWithValue("@SoLuong", 1);
+                    insertCmd.Parameters.AddWithValue("@DonGia", donGia);
+
+                    insertCmd.ExecuteNonQuery();
+                }
             }
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            dgvHoaDon.Rows.Clear();
-            lblTongTien.Text = "0 VND";
-            txtKhuyenMai.Text = "0%";
+            if (cboMaHoaDon.SelectedValue == null)
+            {
+                MessageBox.Show("Vui lòng chọn hóa đơn để hủy!");
+                return;
+            }
+
+            int maHD = Convert.ToInt32(cboMaHoaDon.SelectedValue);
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE HoaDon SET TrangThai = N'Đã hủy' WHERE MaHoaDon = @MaHoaDon", con);
+                cmd.Parameters.AddWithValue("@MaHoaDon", maHD);
+                int rows = cmd.ExecuteNonQuery();
+
+                if (rows > 0)
+                {
+                    MessageBox.Show("Hóa đơn đã được hủy.");
+                    dgvHoaDon.Rows.Clear();
+                    lblTongTien.Text = "0 VND";
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy hóa đơn để hủy.");
+                }
+            }
+
+            LoadMaHoaDon();
         }
+
         private decimal LayDonGiaSanPham(int maSP)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -201,29 +237,7 @@ namespace final_test
                 }
             }
 
-            decimal khuyenMai = 1.0m;
-            if (txtKhuyenMai.Text.Contains("%"))
-                txtKhuyenMai.Text = txtKhuyenMai.Text.Replace("%", "");
-
-            if (decimal.TryParse(txtKhuyenMai.Text, out decimal km))
-            {
-                khuyenMai = (100 - km) / 100;
-            }
-
-            decimal tongSauKM = tong * khuyenMai;
-            lblTongTien.Text = tongSauKM.ToString("N0") + " VND";
-        }
-        private decimal ParseKhuyenMai()
-        {
-            string text = txtKhuyenMai.Text.Replace("%", "").Trim();
-            if (decimal.TryParse(text, out decimal km))
-                return km;
-            return 0;
-        }
-
-        private void txtKhuyenMai_TextChanged(object sender, EventArgs e)
-        {
-            decimal khuyenMai = ParseKhuyenMai();
+            lblTongTien.Text = tong.ToString("N0") + " VND";
         }
 
         private void ql_hoa_don_Load(object sender, EventArgs e)

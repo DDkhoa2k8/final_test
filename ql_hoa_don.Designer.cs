@@ -45,7 +45,6 @@
             this.select_sp = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.cboSanPham = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.txtKhuyenMai = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.danh_sach_sp_con = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dgvHoaDon = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -90,7 +89,6 @@
             this.info_con.Controls.Add(this.btnSua, 2, 0);
             this.info_con.Controls.Add(this.btnXoa, 3, 0);
             this.info_con.Controls.Add(this.select_sp, 0, 0);
-            this.info_con.Controls.Add(this.txtKhuyenMai, 1, 1);
             this.info_con.Dock = System.Windows.Forms.DockStyle.Fill;
             this.info_con.Location = new System.Drawing.Point(30, 31);
             this.info_con.Margin = new System.Windows.Forms.Padding(30, 31, 30, 15);
@@ -287,26 +285,6 @@
             this.cboSanPham.Size = new System.Drawing.Size(286, 36);
             this.cboSanPham.TabIndex = 2;
             // 
-            // txtKhuyenMai
-            // 
-            this.txtKhuyenMai.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtKhuyenMai.DefaultText = "";
-            this.txtKhuyenMai.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtKhuyenMai.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtKhuyenMai.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtKhuyenMai.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtKhuyenMai.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtKhuyenMai.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtKhuyenMai.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtKhuyenMai.Location = new System.Drawing.Point(438, 127);
-            this.txtKhuyenMai.Margin = new System.Windows.Forms.Padding(12);
-            this.txtKhuyenMai.Name = "txtKhuyenMai";
-            this.txtKhuyenMai.PlaceholderText = "";
-            this.txtKhuyenMai.SelectedText = "";
-            this.txtKhuyenMai.Size = new System.Drawing.Size(334, 52);
-            this.txtKhuyenMai.TabIndex = 11;
-            this.txtKhuyenMai.TextChanged += new System.EventHandler(this.txtKhuyenMai_TextChanged);
-            // 
             // guna2Panel1
             // 
             this.guna2Panel1.BorderRadius = 20;
@@ -339,6 +317,7 @@
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.dgvHoaDon.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvHoaDon.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -431,7 +410,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2ComboBox cboMaHoaDon;
-        private Guna.UI2.WinForms.Guna2TextBox txtKhuyenMai;
         private Guna.UI2.WinForms.Guna2DataGridView dgvHoaDon;
     }
 }
