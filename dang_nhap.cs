@@ -63,23 +63,28 @@ namespace final_test
 
         private void openMenu(String input_vaitro)
         {
-            menu mn = new menu();
-            mn.Show();
-            mn.isQuen = isQuen;
-            mn.veriCode = veriCode;
-            mn.vaitro = input_vaitro;
-            mn.username = username;
-            mn.FormClosed += (s, args) =>
-            {
-                this.Show();
-                this.ten_tai_khoan_gntb.Text = "";
-                this.mat_khau_gntb.Text = "";
-                isQuen = false;
-                veriCode = null;
-                this.mat_khau_lable.Text = "Mật khẩu:";
-                username_khi_quen = null;
-            };
             this.Hide();
+            loading loading = new loading();
+            loading.Show();
+            loading.FormClosed += (s, args) =>
+            {
+                menu mn = new menu();
+                mn.Show();
+                mn.isQuen = isQuen;
+                mn.veriCode = veriCode;
+                mn.vaitro = input_vaitro;
+                mn.username = username;
+                mn.FormClosed += (ls, largs) =>
+                {
+                    this.Show();
+                    this.ten_tai_khoan_gntb.Text = "";
+                    this.mat_khau_gntb.Text = "";
+                    isQuen = false;
+                    veriCode = null;
+                    this.mat_khau_lable.Text = "Mật khẩu:";
+                    username_khi_quen = null;
+                };
+            };
         }
 
         private void quen_mk_Click(object sender, EventArgs e)

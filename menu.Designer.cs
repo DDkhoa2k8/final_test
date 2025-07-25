@@ -582,6 +582,7 @@
             this.ClientSize = new System.Drawing.Size(1980, 936);
             this.Controls.Add(this.guna2GradientPanel1);
             this.Controls.Add(this.op_con);
+            this.DoubleBuffered = true;
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.MinimumSize = new System.Drawing.Size(2006, 1007);
             this.Name = "menu";
