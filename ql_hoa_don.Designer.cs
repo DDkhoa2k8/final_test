@@ -34,6 +34,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.con = new System.Windows.Forms.TableLayoutPanel();
             this.info_con = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.soLuongNum = new Guna.UI2.WinForms.Guna2NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.cboMaHoaDon = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -51,6 +54,8 @@
             this.d = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.con.SuspendLayout();
             this.info_con.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.soLuongNum)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.select_sp.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
@@ -71,6 +76,7 @@
             this.con.RowCount = 2;
             this.con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 237F));
             this.con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65.23653F));
+            this.con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.con.Size = new System.Drawing.Size(1566, 908);
             this.con.TabIndex = 1;
             // 
@@ -82,6 +88,7 @@
             this.info_con.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.90315F));
             this.info_con.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.90315F));
             this.info_con.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.90315F));
+            this.info_con.Controls.Add(this.tableLayoutPanel2, 1, 1);
             this.info_con.Controls.Add(this.tableLayoutPanel1, 2, 1);
             this.info_con.Controls.Add(this.btnHuy, 3, 1);
             this.info_con.Controls.Add(this.lblTongTien, 0, 1);
@@ -96,9 +103,49 @@
             this.info_con.RowCount = 2;
             this.info_con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 115F));
             this.info_con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.info_con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.info_con.Size = new System.Drawing.Size(1506, 191);
             this.info_con.TabIndex = 1;
-            this.info_con.Paint += new System.Windows.Forms.PaintEventHandler(this.info_con_Paint);
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.20675F));
+            this.tableLayoutPanel2.Controls.Add(this.soLuongNum, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(429, 118);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(353, 70);
+            this.tableLayoutPanel2.TabIndex = 11;
+            // 
+            // soLuongNum
+            // 
+            this.soLuongNum.BackColor = System.Drawing.Color.Transparent;
+            this.soLuongNum.BorderRadius = 10;
+            this.soLuongNum.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.soLuongNum.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.soLuongNum.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.soLuongNum.Location = new System.Drawing.Point(133, 15);
+            this.soLuongNum.Margin = new System.Windows.Forms.Padding(6, 15, 6, 15);
+            this.soLuongNum.Name = "soLuongNum";
+            this.soLuongNum.Size = new System.Drawing.Size(214, 40);
+            this.soLuongNum.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(103, 25);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Số lượng:";
             // 
             // tableLayoutPanel1
             // 
@@ -112,6 +159,7 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(351, 68);
             this.tableLayoutPanel1.TabIndex = 10;
@@ -134,6 +182,7 @@
             this.cboMaHoaDon.Name = "cboMaHoaDon";
             this.cboMaHoaDon.Size = new System.Drawing.Size(197, 36);
             this.cboMaHoaDon.TabIndex = 2;
+            this.cboMaHoaDon.SelectedIndexChanged += new System.EventHandler(this.cboMaHoaDon_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -146,7 +195,6 @@
             this.label4.Size = new System.Drawing.Size(132, 25);
             this.label4.TabIndex = 3;
             this.label4.Text = "Mã hóa đơn:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // btnHuy
             // 
@@ -284,6 +332,7 @@
             this.cboSanPham.Name = "cboSanPham";
             this.cboSanPham.Size = new System.Drawing.Size(286, 36);
             this.cboSanPham.TabIndex = 2;
+            this.cboSanPham.SelectedIndexChanged += new System.EventHandler(this.cboSanPham_SelectedIndexChanged);
             // 
             // guna2Panel1
             // 
@@ -366,6 +415,7 @@
             this.dgvHoaDon.ThemeStyle.RowsStyle.Height = 22;
             this.dgvHoaDon.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvHoaDon.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvHoaDon.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHoaDon_CellContentClick);
             // 
             // ql_hoa_don
             // 
@@ -381,6 +431,9 @@
             this.con.ResumeLayout(false);
             this.info_con.ResumeLayout(false);
             this.info_con.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.soLuongNum)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.select_sp.ResumeLayout(false);
@@ -411,5 +464,8 @@
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2ComboBox cboMaHoaDon;
         private Guna.UI2.WinForms.Guna2DataGridView dgvHoaDon;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private Guna.UI2.WinForms.Guna2NumericUpDown soLuongNum;
+        private System.Windows.Forms.Label label2;
     }
 }

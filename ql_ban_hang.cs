@@ -87,7 +87,7 @@ namespace final_test
             dtsp.Columns.Add("Gia", "Giá");
             dtsp.Columns.Add("DonViTinh", "Đơn vị tính");
 
-             dtsp.Rows.Add("Tên sản phẩm", "Mã sản phẩm", "Số lượng", "Giá", "Đơn vị tính");
+            dtsp.Rows.Add("Tên sản phẩm", "Mã sản phẩm", "Số lượng", "Giá", "Đơn vị tính");
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -157,7 +157,6 @@ namespace final_test
                 string donViTinh;
                 decimal donGia;
 
-                // Kiểm tra sản phẩm đã có trong danh sách chưa (bỏ qua dòng tiêu đề đầu tiên)
                 bool found = false;
                 for (int i = 1; i < dtsp.Rows.Count - 1; i++)
                 {

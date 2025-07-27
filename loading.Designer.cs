@@ -65,6 +65,7 @@
             this.image.PressedState.ImageSize = new System.Drawing.Size(64, 64);
             this.image.Size = new System.Drawing.Size(950, 391);
             this.image.TabIndex = 1;
+            this.image.UseWaitCursor = true;
             // 
             // label1
             // 
@@ -101,7 +102,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(956, 552);
             this.Controls.Add(this.con);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -109,6 +110,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "loading";
+            this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.loading_Load);
             this.con.ResumeLayout(false);
             this.con.PerformLayout();

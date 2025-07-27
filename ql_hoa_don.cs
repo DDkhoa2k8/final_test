@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,234 +14,280 @@ namespace final_test
 {
     public partial class ql_hoa_don : Form
     {
-        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString;
-
-        private void LoadChiTietHoaDon(int maHD)
-        {
-            dgvHoaDon.Rows.Clear();
-
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                string query = @"
-                SELECT s.TenSanPham, ct.DonGia
-                FROM ChiTietHoaDon ct
-                JOIN SanPham s ON ct.MaSanPham = s.MaSanPham
-                WHERE ct.MaHoaDon = @MaHoaDon";
-
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@MaHoaDon", maHD);
-
-                con.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    string tenSP = reader["TenSanPham"].ToString();
-                    decimal donGia = Convert.ToDecimal(reader["DonGia"]);
-                    dgvHoaDon.Rows.Add(tenSP, donGia);
-                }
-                reader.Close();
-            }
-
-            TinhTongTien();
-        }
+        // Connection string to your database
+        private string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString;
+        private DataTable dtSanPhamTrongHoaDon = new DataTable();
+        private int selectedRowIndex = -1;
 
         public ql_hoa_don()
         {
             InitializeComponent();
-            LoadSanPham();
+        }
+
+        // In your Form's Load event handler, add:
+        private void ql_hoa_don_Load(object sender, EventArgs e)
+        {
             LoadMaHoaDon();
-            SetupDataGridView();
-            cboMaHoaDon.SelectedIndexChanged += cboMaHoaDon_SelectedIndexChanged;
-        }
-        private void cboMaHoaDon_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboMaHoaDon.SelectedValue == null)
-                return;
-
-            int maHD = Convert.ToInt32(cboMaHoaDon.SelectedValue);
-            LoadChiTietHoaDon(maHD);
-        }
-
-        private void info_con_Paint(object sender, PaintEventArgs e)
-        {
-
+            LoadSanPham();
+            //cboMaHoaDon.SelectedIndexChanged += cboMaHoaDon_SelectedIndexChanged;
+            dgvHoaDon.CellClick += dgvHoaDon_CellClick;
+            //btnThem.Click += btnThem_Click;
+            //btnSua.Click += btnSua_Click;
+            //btnXoa.Click += btnXoa_Click;
+            btnHuy.Click += btnHuy_Click;
+            cboSanPham.SelectedIndex = -1;
+            cboMaHoaDon.SelectedIndex = -1;
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LoadSanPham()
-        {
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                string query = "SELECT MaSanPham, TenSanPham FROM SanPham";
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                cboSanPham.DataSource = dt;
-                cboSanPham.DisplayMember = "TenSanPham";
-                cboSanPham.ValueMember = "MaSanPham";
-            }
-        }
-
-
+        // Load all MaHoaDon into cboMaHoaDon
         private void LoadMaHoaDon()
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string query = "SELECT MaHoaDon FROM HoaDon";
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT MaHoaDon FROM HoaDon", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-
                 cboMaHoaDon.DataSource = dt;
                 cboMaHoaDon.DisplayMember = "MaHoaDon";
                 cboMaHoaDon.ValueMember = "MaHoaDon";
+                cboMaHoaDon.SelectedIndex = -1;
             }
         }
-        private void SetupDataGridView()
+
+        // When MaHoaDon is selected, load products in invoice
+        private void cboMaHoaDon_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dgvHoaDon.Columns.Clear();
-            dgvHoaDon.Columns.Add("TenSP", "Tên SP");
-            dgvHoaDon.Columns.Add("DonGia", "Đơn giá");
+            if (cboMaHoaDon.SelectedIndex >= 0)
+            {
+                string maHD = ((DataRowView)cboMaHoaDon.SelectedItem)["MaHoaDon"].ToString();
+                LoadSanPhamTrongHoaDon(maHD);
+                UpdateTongTien(maHD);
+            }
+            else
+            {
+                dgvHoaDon.DataSource = null;
+                lblTongTien.Text = "Tổng tiền(VND):";
+            }
         }
 
+        // Load products in invoice into dgvHoaDon
+        private void LoadSanPhamTrongHoaDon(string maHD)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT cthd.MaSanPham, sp.TenSanPham, cthd.SoLuong, cthd.DonGia, (cthd.SoLuong * cthd.DonGia) AS ThanhTien " +
+                    "FROM ChiTietHoaDon cthd " +
+                    "JOIN SanPham sp ON cthd.MaSanPham = sp.MaSanPham " +
+                    "WHERE cthd.MaHoaDon = @MaHoaDon", con);
+                cmd.Parameters.AddWithValue("@MaHoaDon", maHD);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgvHoaDon.DataSource = dt;
+            }
+        }
+
+        // Helper: Update total amount label
+        private void UpdateTongTien(string maHD)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT ISNULL(SUM(SoLuong * DonGia), 0) FROM ChiTietHoaDon WHERE MaHoaDon = @MaHoaDon", con);
+                cmd.Parameters.AddWithValue("@MaHoaDon", maHD);
+                object result = cmd.ExecuteScalar();
+                lblTongTien.Text = $"Tổng tiền(VND): {result:N0}";
+            }
+        }
+
+        // Add product to invoice
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string tenSP = cboSanPham.Text;
-            decimal donGia = LayDonGiaSanPham(Convert.ToInt32(cboSanPham.SelectedValue));
-
-            dgvHoaDon.Rows.Add(tenSP, donGia);
-            TinhTongTien();
-            SaveChiTietHoaDon();
-        }
-
-        private void btnSua_Click(object sender, EventArgs e)
-        {
-            if (dgvHoaDon.CurrentRow != null)
+            if (cboMaHoaDon.SelectedIndex < 0 || cboSanPham.SelectedIndex < 0)
             {
-                string tenSP = cboSanPham.Text;
-                decimal donGia = LayDonGiaSanPham(Convert.ToInt32(cboSanPham.SelectedValue));
-
-                dgvHoaDon.CurrentRow.Cells["TenSP"].Value = tenSP;
-                dgvHoaDon.CurrentRow.Cells["DonGia"].Value = donGia;
-
-                TinhTongTien();
-                SaveChiTietHoaDon();
-            }
-        }
-
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            if (dgvHoaDon.CurrentRow != null)
-            {
-                dgvHoaDon.Rows.Remove(dgvHoaDon.CurrentRow);
-                TinhTongTien();
-                SaveChiTietHoaDon();
-            }
-        }
-
-        // Hàm tự động lưu chi tiết hóa đơn hiện tại vào DB
-        private void SaveChiTietHoaDon()
-        {
-            if (cboMaHoaDon.SelectedValue == null)
+                MessageBox.Show("Vui lòng chọn hóa đơn và sản phẩm.");
                 return;
-
-            int maHD = Convert.ToInt32(cboMaHoaDon.SelectedValue);
+            }
+            string maHD = cboMaHoaDon.SelectedValue.ToString();
+            string maSP = cboSanPham.SelectedValue.ToString();
+            int soLuong = (int)soLuongNum.Value;
+            if (soLuong <= 0)
+            {
+                MessageBox.Show("Số lượng phải lớn hơn 0.");
+                return;
+            }
+            decimal donGia = LayDonGiaSanPham(maSP);
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
-
-                SqlCommand deleteCmd = new SqlCommand("DELETE FROM ChiTietHoaDon WHERE MaHoaDon = @MaHD", con);
-                deleteCmd.Parameters.AddWithValue("@MaHD", maHD);
-                deleteCmd.ExecuteNonQuery();
-
-                foreach (DataGridViewRow row in dgvHoaDon.Rows)
+                // Check if product already exists in invoice
+                SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM ChiTietHoaDon WHERE MaHoaDon = @MaHoaDon AND MaSanPham = @MaSanPham", con);
+                checkCmd.Parameters.AddWithValue("@MaHoaDon", maHD);
+                checkCmd.Parameters.AddWithValue("@MaSanPham", maSP);
+                int exists = (int)checkCmd.ExecuteScalar();
+                if (exists > 0)
                 {
-                    if (row.IsNewRow) continue;
-
-                    string tenSP = row.Cells["TenSP"].Value.ToString();
-                    decimal donGia = Convert.ToDecimal(row.Cells["DonGia"].Value);
-
-                    SqlCommand getMaSP = new SqlCommand("SELECT MaSanPham FROM SanPham WHERE TenSanPham = @TenSP", con);
-                    getMaSP.Parameters.AddWithValue("@TenSP", tenSP);
-                    int maSP = Convert.ToInt32(getMaSP.ExecuteScalar());
-
-                    SqlCommand insertCmd = new SqlCommand(
-                        "INSERT INTO ChiTietHoaDon (MaHoaDon, MaSanPham, SoLuong, DonGia) VALUES (@MaHD, @MaSP, @SoLuong, @DonGia)", con);
-                    insertCmd.Parameters.AddWithValue("@MaHD", maHD);
-                    insertCmd.Parameters.AddWithValue("@MaSP", maSP);
-                    insertCmd.Parameters.AddWithValue("@SoLuong", 1);
-                    insertCmd.Parameters.AddWithValue("@DonGia", donGia);
-
-                    insertCmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-            if (cboMaHoaDon.SelectedValue == null)
-            {
-                MessageBox.Show("Vui lòng chọn hóa đơn để hủy!");
-                return;
-            }
-
-            int maHD = Convert.ToInt32(cboMaHoaDon.SelectedValue);
-
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE HoaDon SET TrangThai = N'Đã hủy' WHERE MaHoaDon = @MaHoaDon", con);
-                cmd.Parameters.AddWithValue("@MaHoaDon", maHD);
-                int rows = cmd.ExecuteNonQuery();
-
-                if (rows > 0)
-                {
-                    MessageBox.Show("Hóa đơn đã được hủy.");
-                    dgvHoaDon.Rows.Clear();
-                    lblTongTien.Text = "0 VND";
+                    // Update quantity if exists
+                    SqlCommand updateCmd = new SqlCommand(
+                        "UPDATE ChiTietHoaDon SET SoLuong = SoLuong + @SoLuong WHERE MaHoaDon = @MaHoaDon AND MaSanPham = @MaSanPham", con);
+                    updateCmd.Parameters.AddWithValue("@SoLuong", soLuong);
+                    updateCmd.Parameters.AddWithValue("@MaHoaDon", maHD);
+                    updateCmd.Parameters.AddWithValue("@MaSanPham", maSP);
+                    updateCmd.ExecuteNonQuery();
                 }
                 else
                 {
-                    MessageBox.Show("Không tìm thấy hóa đơn để hủy.");
+                    // Insert new
+                    SqlCommand insertCmd = new SqlCommand(
+                        "INSERT INTO ChiTietHoaDon (MaHoaDon, MaSanPham, SoLuong, DonGia) VALUES (@MaHoaDon, @MaSanPham, @SoLuong, @DonGia)", con);
+                    insertCmd.Parameters.AddWithValue("@MaHoaDon", maHD);
+                    insertCmd.Parameters.AddWithValue("@MaSanPham", maSP);
+                    insertCmd.Parameters.AddWithValue("@SoLuong", soLuong);
+                    insertCmd.Parameters.AddWithValue("@DonGia", donGia);
+                    insertCmd.ExecuteNonQuery();
                 }
             }
-
-            LoadMaHoaDon();
+            LoadSanPhamTrongHoaDon(maHD);
+            UpdateTongTien(maHD);
         }
 
-        private decimal LayDonGiaSanPham(int maSP)
+        // Helper: Get DonGia for a product
+        private decimal LayDonGiaSanPham(string maSP)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT DonGia FROM SanPham WHERE MaSP = @MaSP", con);
-                cmd.Parameters.AddWithValue("@MaSP", maSP);
+                SqlCommand cmd = new SqlCommand("SELECT DonGia FROM SanPham WHERE MaSanPham = @MaSanPham", con);
+                cmd.Parameters.AddWithValue("@MaSanPham", maSP);
                 object result = cmd.ExecuteScalar();
                 return result != null ? Convert.ToDecimal(result) : 0;
             }
         }
-        private void TinhTongTien()
+
+        // When a row is selected in dgvHoaDon, populate cboSanPham and soLuongNum
+        private void dgvHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            decimal tong = 0;
-
-            foreach (DataGridViewRow row in dgvHoaDon.Rows)
+            if (e.RowIndex >= 0 || e.RowIndex < dgvHoaDon.RowCount - 1)
             {
-                if (row.Cells["DonGia"].Value != null)
-                {
-                    tong += Convert.ToDecimal(row.Cells["DonGia"].Value);
-                }
+                selectedRowIndex = e.RowIndex;
+                var row = dgvHoaDon.Rows[e.RowIndex];
+                string maSP = row.Cells["MaSanPham"].Value.ToString();
+                int soLuong = Convert.ToInt32(row.Cells["SoLuong"].Value);
+                cboSanPham.SelectedValue = maSP;
+                soLuongNum.Value = soLuong > soLuongNum.Maximum ? soLuongNum.Maximum : soLuong;
             }
-
-            lblTongTien.Text = tong.ToString("N0") + " VND";
         }
 
-        private void ql_hoa_don_Load(object sender, EventArgs e)
+        // Edit selected product in invoice
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (selectedRowIndex < 0 || cboMaHoaDon.SelectedIndex < 0 || cboSanPham.SelectedIndex < 0)
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm để sửa.");
+                return;
+            }
+            string maHD = cboMaHoaDon.SelectedValue.ToString();
+            string maSP = cboSanPham.SelectedValue.ToString();
+            int soLuong = (int)soLuongNum.Value;
+            if (soLuong <= 0)
+            {
+                MessageBox.Show("Số lượng phải lớn hơn 0.");
+                return;
+            }
+            decimal donGia = LayDonGiaSanPham(maSP);
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(
+                    "UPDATE ChiTietHoaDon SET SoLuong = @SoLuong, DonGia = @DonGia WHERE MaHoaDon = @MaHoaDon AND MaSanPham = @MaSanPham", con);
+                cmd.Parameters.AddWithValue("@SoLuong", soLuong);
+                cmd.Parameters.AddWithValue("@DonGia", donGia);
+                cmd.Parameters.AddWithValue("@MaHoaDon", maHD);
+                cmd.Parameters.AddWithValue("@MaSanPham", maSP);
+                cmd.ExecuteNonQuery();
+            }
+            LoadSanPhamTrongHoaDon(maHD);
+            UpdateTongTien(maHD);
+        }
+
+        // Delete selected product from invoice
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (selectedRowIndex < 0 || cboMaHoaDon.SelectedIndex < 0)
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm để xóa.");
+                return;
+            }
+            string maHD = cboMaHoaDon.SelectedValue.ToString();
+            string maSP = dgvHoaDon.Rows[selectedRowIndex].Cells["MaSanPham"].Value.ToString();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(
+                    "DELETE FROM ChiTietHoaDon WHERE MaHoaDon = @MaHoaDon AND MaSanPham = @MaSanPham", con);
+                cmd.Parameters.AddWithValue("@MaHoaDon", maHD);
+                cmd.Parameters.AddWithValue("@MaSanPham", maSP);
+                cmd.ExecuteNonQuery();
+            }
+            LoadSanPhamTrongHoaDon(maHD);
+            UpdateTongTien(maHD);
+        }
+
+        // Cancel invoice (set TrangThai = 'Đã hủy')
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            if (cboMaHoaDon.SelectedIndex < 0)
+            {
+                MessageBox.Show("Vui lòng chọn hóa đơn để hủy.");
+                return;
+            }
+            string maHD = cboMaHoaDon.SelectedValue.ToString();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(
+                    "UPDATE HoaDon SET TrangThai = N'Đã hủy' WHERE MaHoaDon = @MaHoaDon", con);
+                cmd.Parameters.AddWithValue("@MaHoaDon", maHD);
+                cmd.ExecuteNonQuery();
+            }
+            MessageBox.Show("Hóa đơn đã được hủy.");
+            LoadMaHoaDon();
+            dgvHoaDon.DataSource = null;
+            lblTongTien.Text = "Tổng tiền(VND):";
+        }
+
+        // Load all SanPham into cboSanPham
+        private void LoadSanPham()
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT MaSanPham, TenSanPham FROM SanPham", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cboSanPham.DataSource = dt;
+                cboSanPham.DisplayMember = "TenSanPham";
+                cboSanPham.ValueMember = "MaSanPham";
+                cboSanPham.SelectedIndex = -1;
+            }
+        }
+
+        private void cboSanPham_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvHoaDon_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
