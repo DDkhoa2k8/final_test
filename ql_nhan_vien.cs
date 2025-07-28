@@ -146,21 +146,50 @@ namespace final_test
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Xác nhận xoá nhân viên?", "Xác nhận", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            if (string.IsNullOrWhiteSpace(txtMaNV.Text))
+    {
+        MessageBox.Show("Vui lòng chọn nhân viên để xoá.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        return;
+    }
+
+    DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xoá nhân viên này?", "Xác nhận xoá", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+    if (result == DialogResult.Yes)
+    {
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                conn.Open();
+
+                // Kiểm tra xem nhân viên có tồn tại trong bảng Hoá Đơn không (nếu có thì không cho xoá)
+                string checkQuery = "SELECT COUNT(*) FROM HoaDon WHERE MaNhanVien = @MaNV";
+                SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
+                checkCmd.Parameters.AddWithValue("@MaNV", txtMaNV.Text);
+                int count = (int)checkCmd.ExecuteScalar();
+
+                if (count > 0)
                 {
-                    string query = "DELETE from TaiKhoan where MaNhanVien = @MaNV;DELETE FROM NhanVien WHERE MaNhanVien = @MaNV;";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@MaNV", txtMaNV.Text);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    LoadData();
-                    ClearInput();
-                    MessageBox.Show("Đã xoá nhân viên.");
+                    MessageBox.Show("Không thể xoá nhân viên vì đã phát sinh hoá đơn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
+
+                // Xóa tài khoản trước
+                string deleteQuery = "DELETE FROM TaiKhoan WHERE MaNhanVien = @MaNV; DELETE FROM NhanVien WHERE MaNhanVien = @MaNV;";
+                SqlCommand deleteCmd = new SqlCommand(deleteQuery, conn);
+                deleteCmd.Parameters.AddWithValue("@MaNV", txtMaNV.Text);
+
+                deleteCmd.ExecuteNonQuery();
+                LoadData();
+                ClearInput();
+                MessageBox.Show("Đã xoá nhân viên thành công.");
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xoá nhân viên: " + ex.Message);
+            }
+        }
+    }
         }
 
         private void dgvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)

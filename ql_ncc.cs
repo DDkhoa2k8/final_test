@@ -17,6 +17,8 @@ namespace final_test
         public ql_ncc()
         {
             InitializeComponent();
+            this.Load += new System.EventHandler(this.ql_ncc_Load);
+
         }
         private void ql_ncc_Load(object sender, EventArgs e)
         {
@@ -35,41 +37,40 @@ namespace final_test
                     dgvNCC.DataSource = dt;
                 }
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Lỗi SQL khi tải dữ liệu: " + ex.Message);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message);
+                MessageBox.Show("Lỗi khác: " + ex.Message);
             }
         }
 
         private void them_btn_Click(object sender, EventArgs e)
         {
-            if (ValidateInput())
-            {
-                try
-                {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        string query = @"INSERT INTO NhaCungCap (TenNhaCungCap, DiaChi, SoDienThoai, Email) 
-                                         VALUES (@Ten, @DiaChi, @SDT, @Email)";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@Ten", txtTen.Text.Trim());
-                            cmd.Parameters.AddWithValue("@DiaChi", txtDiaChi.Text.Trim());
-                            cmd.Parameters.AddWithValue("@SDT", txtSDT.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+            if (!ValidateInput()) return;
 
-                            conn.Open();
-                            cmd.ExecuteNonQuery();
-                            MessageBox.Show("Thêm nhà cung cấp thành công!");
-                            LoadNhaCungCap();
-                            ClearFields();
-                        }
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string query = @"INSERT INTO NhaCungCap (TenNhaCungCap, DiaChi, SoDienThoai, Email) 
+                                     VALUES (@Ten, @DiaChi, @SDT, @Email)";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        AddParameters(cmd);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("✅ Thêm nhà cung cấp thành công!");
+                        LoadNhaCungCap();
+                        ClearFields();
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi thêm: " + ex.Message);
-                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("❌ Lỗi SQL khi thêm: " + ex.Message);
             }
         }
         private void sua_btn_Click(object sender, EventArgs e)
@@ -80,36 +81,34 @@ namespace final_test
                 return;
             }
 
-            if (ValidateInput())
-            {
-                try
-                {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        string query = @"UPDATE NhaCungCap SET 
-                                         TenNhaCungCap = @Ten, DiaChi = @DiaChi, 
-                                         SoDienThoai = @SDT, Email = @Email 
-                                         WHERE MaNhaCungCap = @Ma";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@Ma", txtMa.Text);
-                            cmd.Parameters.AddWithValue("@Ten", txtTen.Text.Trim());
-                            cmd.Parameters.AddWithValue("@DiaChi", txtDiaChi.Text.Trim());
-                            cmd.Parameters.AddWithValue("@SDT", txtSDT.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+            if (!ValidateInput()) return;
 
-                            conn.Open();
-                            cmd.ExecuteNonQuery();
-                            MessageBox.Show("Cập nhật thành công!");
-                            LoadNhaCungCap();
-                            ClearFields();
-                        }
+            if (MessageBox.Show("Bạn có chắc muốn cập nhật nhà cung cấp này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string query = @"UPDATE NhaCungCap SET 
+                                     TenNhaCungCap = @Ten, DiaChi = @DiaChi, 
+                                     SoDienThoai = @SDT, Email = @Email 
+                                     WHERE MaNhaCungCap = @Ma";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Ma", txtMa.Text.Trim());
+                        AddParameters(cmd);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("✅ Cập nhật thành công!");
+                        LoadNhaCungCap();
+                        ClearFields();
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi sửa: " + ex.Message);
-                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("❌ Lỗi SQL khi sửa: " + ex.Message);
             }
         }
 
@@ -117,32 +116,48 @@ namespace final_test
         {
             if (string.IsNullOrWhiteSpace(txtMa.Text))
             {
-                MessageBox.Show("Vui lòng chọn nhà cung cấp cần xóa.");
+                MessageBox.Show("⚠️ Vui lòng chọn nhà cung cấp cần xóa.");
                 return;
             }
 
-            if (MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có chắc muốn xóa nhà cung cấp này cùng với dữ liệu liên quan?",
+                                "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+
+            try
             {
-                try
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    conn.Open();
+
+                    // Bước 1: Xóa dữ liệu liên quan trong bảng ChiTietNhap
+                    string queryChild = "DELETE FROM ChiTietNhap WHERE MaNhaCungCap = @Ma";
+                    using (SqlCommand cmdChild = new SqlCommand(queryChild, conn))
                     {
-                        string query = "DELETE FROM NhaCungCap WHERE MaNhaCungCap = @Ma";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@Ma", txtMa.Text);
-                            conn.Open();
-                            cmd.ExecuteNonQuery();
-                            MessageBox.Show("Xóa thành công!");
-                            LoadNhaCungCap();
-                            ClearFields();
-                        }
+                        cmdChild.Parameters.AddWithValue("@Ma", txtMa.Text.Trim());
+                        cmdChild.ExecuteNonQuery();
                     }
+
+                    // Bước 2: Xóa nhà cung cấp trong bảng NhaCungCap
+                    string queryParent = "DELETE FROM NhaCungCap WHERE MaNhaCungCap = @Ma";
+                    using (SqlCommand cmdParent = new SqlCommand(queryParent, conn))
+                    {
+                        cmdParent.Parameters.AddWithValue("@Ma", txtMa.Text.Trim());
+                        cmdParent.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("✅ Đã xóa nhà cung cấp và dữ liệu liên quan thành công!");
+                    LoadNhaCungCap();
+                    ClearFields();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi xóa: " + ex.Message);
-                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("❌ Lỗi SQL khi xóa: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("❌ Lỗi khác: " + ex.Message);
             }
         }
 
@@ -152,32 +167,27 @@ namespace final_test
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    string keyword = txtTimKiem.Text.Trim().ToLower();
                     string query = "SELECT * FROM NhaCungCap WHERE LOWER(TenNhaCungCap) LIKE @TuKhoa";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        string keyword = txtTimKiem.Text.Trim().ToLower();
                         cmd.Parameters.AddWithValue("@TuKhoa", "%" + keyword + "%");
-
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
-
                         dgvNCC.DataSource = dt;
-
-                        if (dt.Rows.Count == 0)
-                            MessageBox.Show("Không tìm thấy nhà cung cấp nào phù hợp.");
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
+                MessageBox.Show("❌ Lỗi SQL khi tìm kiếm: " + ex.Message);
             }
         }
 
         private void dgvNCC_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && dgvNCC.Rows[e.RowIndex].Cells["MaNhaCungCap"].Value != null)
             {
                 DataGridViewRow row = dgvNCC.Rows[e.RowIndex];
                 txtMa.Text = row.Cells["MaNhaCungCap"].Value.ToString();
@@ -198,20 +208,35 @@ namespace final_test
         }
         private bool ValidateInput()
         {
-            if (string.IsNullOrWhiteSpace(txtTen.Text) || string.IsNullOrWhiteSpace(txtDiaChi.Text) ||
-                string.IsNullOrWhiteSpace(txtSDT.Text) || string.IsNullOrWhiteSpace(txtEmail.Text))
+            if (string.IsNullOrWhiteSpace(txtTen.Text) ||
+                            string.IsNullOrWhiteSpace(txtDiaChi.Text) ||
+                            string.IsNullOrWhiteSpace(txtSDT.Text) ||
+                            string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin.");
+                MessageBox.Show("⚠️ Vui lòng điền đầy đủ thông tin.");
                 return false;
             }
 
-            if (!long.TryParse(txtSDT.Text, out _))
+            if (!long.TryParse(txtSDT.Text, out _) || txtSDT.Text.Length < 8)
             {
-                MessageBox.Show("Số điện thoại không hợp lệ.");
+                MessageBox.Show("⚠️ Số điện thoại không hợp lệ.");
+                return false;
+            }
+
+            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            {
+                MessageBox.Show("⚠️ Email không hợp lệ.");
                 return false;
             }
 
             return true;
+        }
+        private void AddParameters(SqlCommand cmd)
+        {
+            cmd.Parameters.AddWithValue("@Ten", txtTen.Text.Trim());
+            cmd.Parameters.AddWithValue("@DiaChi", txtDiaChi.Text.Trim());
+            cmd.Parameters.AddWithValue("@SDT", txtSDT.Text.Trim());
+            cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
         }
     }
 }

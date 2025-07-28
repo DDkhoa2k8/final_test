@@ -48,7 +48,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
+  <!-- <PropertyGroup>
     <ManifestCertificateThumbprint>E22CEE1E68FE19B05A396989E488E40F403B9FC4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
@@ -59,7 +59,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
-  </PropertyGroup>
+  </PropertyGroup> -->
   <ItemGroup>
     <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>packages\Guna.UI2.WinForms.2.0.4.7\lib\net48\Guna.UI2.dll</HintPath>
@@ -251,9 +251,7 @@
     <EmbeddedResource Include="ql_danh_muc.resx">
       <DependentUpon>ql_danh_muc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ql_hoa_don.resx">
-      <DependentUpon>ql_hoa_don.cs</DependentUpon>
-    </EmbeddedResource>
+    <EmbeddedResource Include="ql_hoa_don.resx" />
     <EmbeddedResource Include="ql_ncc.resx">
       <DependentUpon>ql_ncc.cs</DependentUpon>
     </EmbeddedResource>
