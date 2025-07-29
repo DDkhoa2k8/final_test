@@ -59,7 +59,7 @@
             this.close_child_form = new Guna.UI2.WinForms.Guna2Button();
             this.doi_mk = new Guna.UI2.WinForms.Guna2Button();
             this.dang_xuat = new Guna.UI2.WinForms.Guna2Button();
-            this.label9 = new System.Windows.Forms.Label();
+            this.hello_lable = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.op_con.SuspendLayout();
@@ -487,7 +487,7 @@
             this.guna2GradientPanel1.Controls.Add(this.close_child_form);
             this.guna2GradientPanel1.Controls.Add(this.doi_mk);
             this.guna2GradientPanel1.Controls.Add(this.dang_xuat);
-            this.guna2GradientPanel1.Controls.Add(this.label9);
+            this.guna2GradientPanel1.Controls.Add(this.hello_lable);
             this.guna2GradientPanel1.Controls.Add(this.label10);
             this.guna2GradientPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2GradientPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -549,17 +549,17 @@
             this.dang_xuat.Text = "Đăng xuất";
             this.dang_xuat.Click += new System.EventHandler(this.dang_xuat_Click);
             // 
-            // label9
+            // hello_lable
             // 
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(17, 127);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(380, 91);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Bạn đã đăng nhập với tư cách là: ...\r\n";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
+            this.hello_lable.BackColor = System.Drawing.Color.Transparent;
+            this.hello_lable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hello_lable.ForeColor = System.Drawing.Color.White;
+            this.hello_lable.Location = new System.Drawing.Point(17, 127);
+            this.hello_lable.Name = "hello_lable";
+            this.hello_lable.Size = new System.Drawing.Size(380, 91);
+            this.hello_lable.TabIndex = 2;
+            this.hello_lable.Text = "Bạn đã đăng nhập với tư cách là: Admin.";
+            this.hello_lable.Click += new System.EventHandler(this.label9_Click);
             // 
             // label10
             // 
@@ -632,7 +632,7 @@
         private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label hello_lable;
         private Guna.UI2.WinForms.Guna2Button dang_xuat;
         private Guna.UI2.WinForms.Guna2Button doi_mk;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;

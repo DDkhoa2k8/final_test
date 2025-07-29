@@ -289,7 +289,7 @@ namespace final_test
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi khi xoá: " + ex.Message);
+                    MessageBox.Show("Lỗi khi xoá: Không thể xóa sản phẩm vì đã phát sinh trong hóa đơn.");
                 }
             }
         }

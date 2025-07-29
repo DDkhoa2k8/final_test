@@ -64,7 +64,6 @@ namespace final_test
         private void openMenu(String input_vaitro)
         {
             menu mn = new menu();
-            mn.Show();
             mn.isQuen = isQuen;
             mn.veriCode = veriCode;
             mn.vaitro = input_vaitro;
@@ -79,6 +78,7 @@ namespace final_test
                 this.mat_khau_lable.Text = "Mật khẩu:";
                 username_khi_quen = null;
             };
+            mn.Show();
             this.Hide();
         }
 

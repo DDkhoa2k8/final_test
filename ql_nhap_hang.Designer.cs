@@ -109,6 +109,8 @@
             // 
             // DGVNhaphang
             // 
+            this.DGVNhaphang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DGVNhaphang.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVNhaphang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVNhaphang.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVNhaphang.Location = new System.Drawing.Point(0, 40);

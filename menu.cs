@@ -39,6 +39,16 @@ namespace final_test
             this.op_bc.Click += new System.EventHandler(this.op_bc_Click);
             this.op_ql_nh.Click += new System.EventHandler(this.op_ql_nh_Click);
             this.op_ql_ncc.Click += new System.EventHandler(this.op_ql_ncc_Click);
+            this.Shown += (object sender, EventArgs e) =>
+            {
+                if (this.vaitro != "Admin" && this.vaitro != "dev")
+                {
+                    this.op_ql_nv.Visible = false;
+                    this.op_ql_ncc.Visible = false;
+                    this.op_ql_nh.Visible = false;
+                    this.hello_lable.Text = "Bạn đã đăng nhập với tư cách là: Nhân viên.";
+                }
+            };
         }
 
         private Form curForm;
@@ -64,7 +74,7 @@ namespace final_test
 
         }
 
-        private void showChildForm<F>(Guna2Panel op) where F : Form, new()
+        private F showChildForm<F>(Guna2Panel op) where F : Form, new()
         {
             F cf = new F();
             cf.TopLevel = false;
@@ -87,11 +97,15 @@ namespace final_test
             op.Dock = DockStyle.Fill;
             this.curForm = cf;
             isOpen = true;
+
+            return cf;
         }
 
         private void op_ql_bh_Click(object sender, EventArgs e)
         {
-            showChildForm<ql_ban_hang>(op_ql_bh);
+            showChildForm<ql_ban_hang>(op_ql_bh).username = username;
+
+
         }
 
         private void op_ql_sp_Click(object sender, EventArgs e)

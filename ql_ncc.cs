@@ -238,5 +238,10 @@ namespace final_test
             cmd.Parameters.AddWithValue("@SDT", txtSDT.Text.Trim());
             cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
         }
+
+        private void ql_ncc_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
