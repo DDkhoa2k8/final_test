@@ -30,6 +30,7 @@
         {
             this.lable = new System.Windows.Forms.Label();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.DGVNhaphang = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
@@ -40,7 +41,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.info_con = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.guna2ComboBox2 = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cbnncc = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2NumericUpDown1 = new Guna.UI2.WinForms.Guna2NumericUpDown();
@@ -62,6 +63,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.ma_sp_tb = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2GroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVNhaphang)).BeginInit();
             this.tableLayoutPanel9.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -84,40 +87,53 @@
             this.lable.AutoSize = true;
             this.lable.BackColor = System.Drawing.Color.Transparent;
             this.lable.ForeColor = System.Drawing.Color.White;
-            this.lable.Location = new System.Drawing.Point(3, 9);
-            this.lable.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lable.Location = new System.Drawing.Point(8, 19);
             this.lable.Name = "lable";
-            this.lable.Size = new System.Drawing.Size(79, 13);
+            this.lable.Size = new System.Drawing.Size(156, 25);
             this.lable.TabIndex = 0;
             this.lable.Text = "Mã nhập hàng:";
             // 
             // guna2GroupBox1
             // 
             this.guna2GroupBox1.BorderRadius = 20;
+            this.guna2GroupBox1.Controls.Add(this.DGVNhaphang);
             this.guna2GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2GroupBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2GroupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.guna2GroupBox1.Location = new System.Drawing.Point(0, 0);
-            this.guna2GroupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.guna2GroupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2GroupBox1.Name = "guna2GroupBox1";
-            this.guna2GroupBox1.Size = new System.Drawing.Size(744, 247);
+            this.guna2GroupBox1.Size = new System.Drawing.Size(1491, 477);
             this.guna2GroupBox1.TabIndex = 0;
             this.guna2GroupBox1.Text = "Danh sách nhập hàng";
+            // 
+            // DGVNhaphang
+            // 
+            this.DGVNhaphang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVNhaphang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVNhaphang.Location = new System.Drawing.Point(0, 40);
+            this.DGVNhaphang.Margin = new System.Windows.Forms.Padding(4);
+            this.DGVNhaphang.Name = "DGVNhaphang";
+            this.DGVNhaphang.RowHeadersWidth = 62;
+            this.DGVNhaphang.RowTemplate.Height = 28;
+            this.DGVNhaphang.Size = new System.Drawing.Size(1491, 437);
+            this.DGVNhaphang.TabIndex = 0;
+            this.DGVNhaphang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVNhaphang_CellClick);
             // 
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.ColumnCount = 2;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 157F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.93366F));
             this.tableLayoutPanel9.Controls.Add(this.label7, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.guna2TextBox1, 1, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(2, 72);
-            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 138);
+            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(248, 59);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(500, 117);
             this.tableLayoutPanel9.TabIndex = 15;
             // 
             // label7
@@ -126,10 +142,9 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(13, 23);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(26, 46);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 13);
+            this.label7.Size = new System.Drawing.Size(104, 25);
             this.label7.TabIndex = 0;
             this.label7.Text = "Tìm kiếm:";
             // 
@@ -146,13 +161,14 @@
             this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2TextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Location = new System.Drawing.Point(82, 16);
-            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(3, 16, 3, 16);
+            this.guna2TextBox1.Location = new System.Drawing.Point(162, 30);
+            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(5, 30, 5, 30);
             this.guna2TextBox1.Name = "guna2TextBox1";
             this.guna2TextBox1.PlaceholderText = "";
             this.guna2TextBox1.SelectedText = "";
-            this.guna2TextBox1.Size = new System.Drawing.Size(163, 27);
+            this.guna2TextBox1.Size = new System.Drawing.Size(333, 57);
             this.guna2TextBox1.TabIndex = 1;
+            this.guna2TextBox1.TextChanged += new System.EventHandler(this.guna2TextBox1_TextChanged);
             // 
             // them_btn
             // 
@@ -165,12 +181,13 @@
             this.them_btn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.them_btn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.them_btn.ForeColor = System.Drawing.Color.White;
-            this.them_btn.Location = new System.Drawing.Point(254, 86);
-            this.them_btn.Margin = new System.Windows.Forms.Padding(2, 16, 2, 16);
+            this.them_btn.Location = new System.Drawing.Point(511, 166);
+            this.them_btn.Margin = new System.Windows.Forms.Padding(5, 30, 5, 30);
             this.them_btn.Name = "them_btn";
-            this.them_btn.Size = new System.Drawing.Size(159, 31);
+            this.them_btn.Size = new System.Drawing.Size(318, 61);
             this.them_btn.TabIndex = 11;
             this.them_btn.Text = "Thêm";
+            this.them_btn.Click += new System.EventHandler(this.them_btn_Click);
             // 
             // sua_btn
             // 
@@ -183,12 +200,13 @@
             this.sua_btn.FillColor = System.Drawing.Color.Gold;
             this.sua_btn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.sua_btn.ForeColor = System.Drawing.Color.White;
-            this.sua_btn.Location = new System.Drawing.Point(417, 86);
-            this.sua_btn.Margin = new System.Windows.Forms.Padding(2, 16, 2, 16);
+            this.sua_btn.Location = new System.Drawing.Point(839, 166);
+            this.sua_btn.Margin = new System.Windows.Forms.Padding(5, 30, 5, 30);
             this.sua_btn.Name = "sua_btn";
-            this.sua_btn.Size = new System.Drawing.Size(159, 31);
+            this.sua_btn.Size = new System.Drawing.Size(318, 61);
             this.sua_btn.TabIndex = 12;
             this.sua_btn.Text = "Sửa";
+            this.sua_btn.Click += new System.EventHandler(this.sua_btn_Click);
             // 
             // xoa_btn
             // 
@@ -201,12 +219,13 @@
             this.xoa_btn.FillColor = System.Drawing.Color.Red;
             this.xoa_btn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.xoa_btn.ForeColor = System.Drawing.Color.White;
-            this.xoa_btn.Location = new System.Drawing.Point(580, 86);
-            this.xoa_btn.Margin = new System.Windows.Forms.Padding(2, 16, 2, 16);
+            this.xoa_btn.Location = new System.Drawing.Point(1167, 166);
+            this.xoa_btn.Margin = new System.Windows.Forms.Padding(5, 30, 5, 30);
             this.xoa_btn.Name = "xoa_btn";
-            this.xoa_btn.Size = new System.Drawing.Size(162, 31);
+            this.xoa_btn.Size = new System.Drawing.Size(319, 61);
             this.xoa_btn.TabIndex = 13;
             this.xoa_btn.Text = "Xóa";
+            this.xoa_btn.Click += new System.EventHandler(this.xoa_btn_Click);
             // 
             // guna2Panel1
             // 
@@ -214,10 +233,10 @@
             this.guna2Panel1.Controls.Add(this.guna2GroupBox1);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2Panel1.Location = new System.Drawing.Point(15, 165);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(15, 8, 15, 16);
+            this.guna2Panel1.Location = new System.Drawing.Point(29, 317);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(29, 15, 29, 30);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(744, 247);
+            this.guna2Panel1.Size = new System.Drawing.Size(1491, 477);
             this.guna2Panel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -228,12 +247,12 @@
             this.tableLayoutPanel1.Controls.Add(this.info_con, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 157F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 302F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(774, 428);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1549, 824);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // info_con
@@ -257,49 +276,52 @@
             this.info_con.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.info_con.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.info_con.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.info_con.Location = new System.Drawing.Point(15, 16);
-            this.info_con.Margin = new System.Windows.Forms.Padding(15, 16, 15, 8);
+            this.info_con.Location = new System.Drawing.Point(29, 30);
+            this.info_con.Margin = new System.Windows.Forms.Padding(29, 30, 29, 15);
             this.info_con.Name = "info_con";
             this.info_con.RowCount = 3;
-            this.info_con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.info_con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.info_con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
+            this.info_con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.info_con.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.info_con.Size = new System.Drawing.Size(744, 133);
+            this.info_con.Size = new System.Drawing.Size(1491, 257);
             this.info_con.TabIndex = 1;
             // 
             // tableLayoutPanel10
             // 
             this.tableLayoutPanel10.ColumnCount = 2;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 157F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.93366F));
-            this.tableLayoutPanel10.Controls.Add(this.guna2ComboBox2, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.cbnncc, 1, 0);
             this.tableLayoutPanel10.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(580, 37);
-            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(1165, 70);
+            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(162, 31);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(323, 64);
             this.tableLayoutPanel10.TabIndex = 17;
             // 
-            // guna2ComboBox2
+            // cbnncc
             // 
-            this.guna2ComboBox2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ComboBox2.BorderRadius = 10;
-            this.guna2ComboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2ComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.guna2ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.guna2ComboBox2.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.guna2ComboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.guna2ComboBox2.ItemHeight = 30;
-            this.guna2ComboBox2.Location = new System.Drawing.Point(82, 8);
-            this.guna2ComboBox2.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.guna2ComboBox2.Name = "guna2ComboBox2";
-            this.guna2ComboBox2.Size = new System.Drawing.Size(77, 36);
-            this.guna2ComboBox2.TabIndex = 2;
+            this.cbnncc.BackColor = System.Drawing.Color.Transparent;
+            this.cbnncc.BorderRadius = 10;
+            this.cbnncc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbnncc.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbnncc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbnncc.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbnncc.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbnncc.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbnncc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbnncc.ItemHeight = 30;
+            this.cbnncc.Items.AddRange(new object[] {
+            "0"});
+            this.cbnncc.Location = new System.Drawing.Point(162, 15);
+            this.cbnncc.Margin = new System.Windows.Forms.Padding(5, 15, 5, 15);
+            this.cbnncc.Name = "cbnncc";
+            this.cbnncc.Size = new System.Drawing.Size(156, 36);
+            this.cbnncc.TabIndex = 2;
+            this.cbnncc.SelectedIndexChanged += new System.EventHandler(this.guna2ComboBox2_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -307,27 +329,26 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(5, 0);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(4, 7);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 31);
+            this.label8.Size = new System.Drawing.Size(148, 50);
             this.label8.TabIndex = 0;
             this.label8.Text = "Lọc theo mã nhà cung cấp:";
             // 
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.ColumnCount = 2;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.93366F));
             this.tableLayoutPanel8.Controls.Add(this.guna2NumericUpDown1, 1, 0);
             this.tableLayoutPanel8.Controls.Add(this.label6, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(417, 37);
-            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(837, 70);
+            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(159, 31);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(322, 64);
             this.tableLayoutPanel8.TabIndex = 16;
             // 
             // guna2NumericUpDown1
@@ -337,10 +358,10 @@
             this.guna2NumericUpDown1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2NumericUpDown1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2NumericUpDown1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2NumericUpDown1.Location = new System.Drawing.Point(79, 8);
-            this.guna2NumericUpDown1.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.guna2NumericUpDown1.Location = new System.Drawing.Point(156, 15);
+            this.guna2NumericUpDown1.Margin = new System.Windows.Forms.Padding(5, 15, 5, 15);
             this.guna2NumericUpDown1.Name = "guna2NumericUpDown1";
-            this.guna2NumericUpDown1.Size = new System.Drawing.Size(77, 15);
+            this.guna2NumericUpDown1.Size = new System.Drawing.Size(161, 34);
             this.guna2NumericUpDown1.TabIndex = 3;
             // 
             // label6
@@ -349,27 +370,26 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(2, 9);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(5, 19);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.Size = new System.Drawing.Size(140, 25);
             this.label6.TabIndex = 0;
             this.label6.Text = "Đơn giá nhập";
             // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 2;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 157F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.93366F));
             this.tableLayoutPanel7.Controls.Add(this.gia_nmr, 1, 0);
             this.tableLayoutPanel7.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(254, 37);
-            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(509, 70);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(159, 31);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(322, 64);
             this.tableLayoutPanel7.TabIndex = 5;
             // 
             // gia_nmr
@@ -379,10 +399,10 @@
             this.gia_nmr.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.gia_nmr.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gia_nmr.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gia_nmr.Location = new System.Drawing.Point(82, 8);
-            this.gia_nmr.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.gia_nmr.Location = new System.Drawing.Point(162, 15);
+            this.gia_nmr.Margin = new System.Windows.Forms.Padding(5, 15, 5, 15);
             this.gia_nmr.Name = "gia_nmr";
-            this.gia_nmr.Size = new System.Drawing.Size(74, 15);
+            this.gia_nmr.Size = new System.Drawing.Size(155, 34);
             this.gia_nmr.TabIndex = 2;
             // 
             // label5
@@ -391,27 +411,26 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(13, 9);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(27, 19);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 13);
+            this.label5.Size = new System.Drawing.Size(103, 25);
             this.label5.TabIndex = 0;
             this.label5.Text = "Số lượng:";
             // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.93366F));
             this.tableLayoutPanel6.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.hsd_dt, 1, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(2, 37);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 70);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(248, 31);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(500, 64);
             this.tableLayoutPanel6.TabIndex = 4;
             // 
             // label4
@@ -420,10 +439,9 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(9, 9);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(19, 19);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.Size = new System.Drawing.Size(122, 25);
             this.label4.TabIndex = 0;
             this.label4.Text = "Ngày nhập:";
             // 
@@ -435,29 +453,29 @@
             this.hsd_dt.FillColor = System.Drawing.Color.White;
             this.hsd_dt.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.hsd_dt.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.hsd_dt.Location = new System.Drawing.Point(82, 8);
-            this.hsd_dt.Margin = new System.Windows.Forms.Padding(2, 8, 2, 8);
+            this.hsd_dt.Location = new System.Drawing.Point(163, 15);
+            this.hsd_dt.Margin = new System.Windows.Forms.Padding(3, 15, 3, 15);
             this.hsd_dt.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.hsd_dt.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.hsd_dt.Name = "hsd_dt";
-            this.hsd_dt.Size = new System.Drawing.Size(164, 15);
+            this.hsd_dt.Size = new System.Drawing.Size(334, 34);
             this.hsd_dt.TabIndex = 1;
             this.hsd_dt.Value = new System.DateTime(2025, 6, 28, 19, 43, 14, 334);
             // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.93366F));
             this.tableLayoutPanel5.Controls.Add(this.guna2ComboBox3, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(580, 2);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(1165, 2);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(162, 31);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(323, 64);
             this.tableLayoutPanel5.TabIndex = 3;
             // 
             // guna2ComboBox3
@@ -472,10 +490,10 @@
             this.guna2ComboBox3.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.guna2ComboBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.guna2ComboBox3.ItemHeight = 30;
-            this.guna2ComboBox3.Location = new System.Drawing.Point(68, 8);
-            this.guna2ComboBox3.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.guna2ComboBox3.Location = new System.Drawing.Point(136, 15);
+            this.guna2ComboBox3.Margin = new System.Windows.Forms.Padding(5, 15, 5, 15);
             this.guna2ComboBox3.Name = "guna2ComboBox3";
-            this.guna2ComboBox3.Size = new System.Drawing.Size(91, 36);
+            this.guna2ComboBox3.Size = new System.Drawing.Size(182, 36);
             this.guna2ComboBox3.TabIndex = 3;
             // 
             // label3
@@ -484,27 +502,26 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(10, 2);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(21, 7);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 26);
+            this.label3.Size = new System.Drawing.Size(89, 50);
             this.label3.TabIndex = 0;
             this.label3.Text = "Mã sản phẩm:";
             // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 157F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.93366F));
             this.tableLayoutPanel4.Controls.Add(this.guna2ComboBox1, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(417, 2);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(837, 2);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(159, 31);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(322, 64);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
             // guna2ComboBox1
@@ -519,10 +536,10 @@
             this.guna2ComboBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.guna2ComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.guna2ComboBox1.ItemHeight = 30;
-            this.guna2ComboBox1.Location = new System.Drawing.Point(82, 8);
-            this.guna2ComboBox1.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.guna2ComboBox1.Location = new System.Drawing.Point(162, 15);
+            this.guna2ComboBox1.Margin = new System.Windows.Forms.Padding(5, 15, 5, 15);
             this.guna2ComboBox1.Name = "guna2ComboBox1";
-            this.guna2ComboBox1.Size = new System.Drawing.Size(74, 36);
+            this.guna2ComboBox1.Size = new System.Drawing.Size(155, 36);
             this.guna2ComboBox1.TabIndex = 2;
             // 
             // label2
@@ -531,27 +548,26 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(3, 2);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(7, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 26);
+            this.label2.Size = new System.Drawing.Size(143, 50);
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã nhà cung cấp:";
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 172F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.93366F));
             this.tableLayoutPanel3.Controls.Add(this.gioi_tinh_cb, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(254, 2);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(509, 2);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(159, 31);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(322, 64);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // gioi_tinh_cb
@@ -566,10 +582,10 @@
             this.gioi_tinh_cb.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.gioi_tinh_cb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.gioi_tinh_cb.ItemHeight = 30;
-            this.gioi_tinh_cb.Location = new System.Drawing.Point(89, 8);
-            this.gioi_tinh_cb.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.gioi_tinh_cb.Location = new System.Drawing.Point(177, 15);
+            this.gioi_tinh_cb.Margin = new System.Windows.Forms.Padding(5, 15, 5, 15);
             this.gioi_tinh_cb.Name = "gioi_tinh_cb";
-            this.gioi_tinh_cb.Size = new System.Drawing.Size(67, 36);
+            this.gioi_tinh_cb.Size = new System.Drawing.Size(140, 36);
             this.gioi_tinh_cb.TabIndex = 2;
             // 
             // label1
@@ -578,27 +594,26 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(5, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(12, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.Size = new System.Drawing.Size(148, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã nhân viên:";
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 172F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.93366F));
             this.tableLayoutPanel2.Controls.Add(this.lable, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.ma_sp_tb, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 2);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 2);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(248, 31);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(500, 64);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // ma_sp_tb
@@ -614,25 +629,28 @@
             this.ma_sp_tb.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ma_sp_tb.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.ma_sp_tb.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ma_sp_tb.Location = new System.Drawing.Point(89, 8);
-            this.ma_sp_tb.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.ma_sp_tb.Location = new System.Drawing.Point(177, 15);
+            this.ma_sp_tb.Margin = new System.Windows.Forms.Padding(5, 15, 5, 15);
             this.ma_sp_tb.Name = "ma_sp_tb";
             this.ma_sp_tb.PlaceholderText = "";
             this.ma_sp_tb.SelectedText = "";
-            this.ma_sp_tb.Size = new System.Drawing.Size(156, 15);
+            this.ma_sp_tb.Size = new System.Drawing.Size(318, 34);
             this.ma_sp_tb.TabIndex = 1;
             // 
             // ql_nhap_hang
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(774, 428);
+            this.ClientSize = new System.Drawing.Size(1549, 824);
             this.Controls.Add(this.tableLayoutPanel1);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ql_nhap_hang";
             this.Text = "Quản lý nhập hàng";
+            this.Load += new System.EventHandler(this.ql_nhap_hang_Load);
+            this.guna2GroupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGVNhaphang)).EndInit();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
             this.guna2Panel1.ResumeLayout(false);
@@ -693,8 +711,9 @@
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
         private Guna.UI2.WinForms.Guna2ComboBox gioi_tinh_cb;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox2;
+        private Guna.UI2.WinForms.Guna2ComboBox cbnncc;
         private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox3;
+        private System.Windows.Forms.DataGridView DGVNhaphang;
     }
 }
